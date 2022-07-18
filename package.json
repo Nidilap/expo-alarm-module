@@ -1,0 +1,32 @@
+{
+  "name": "AlarmeModule",
+  "version": "0.1.0",
+  "description": "Modulo de alarme nativo",
+  "main": "build/AlarmeModule.js",
+  "types": "build/AlarmeModule.d.ts",
+  "scripts": {
+    "build": "expo-module build",
+    "clean": "expo-module clean",
+    "lint": "expo-module lint",
+    "test": "expo-module test",
+    "prepare": "expo-module prepare",
+    "prepublishOnly": "expo-module prepublishOnly",
+    "expo-module": "expo-module"
+  },
+  "keywords": ["react-native", "expo", "AlarmeModule", "AlarmeModule"],
+  "repository": "",
+  "bugs": {
+    "url": "/issues"
+  },
+  "author": "Mateus Andre",
+  "license": "MIT",
+  "homepage": "#readme",
+  "dependencies": {},
+  "devDependencies": {
+    "expo-module-scripts": "^2.0.0",
+    "expo-modules-core": "^0.9.0"
+  },
+  "peerDependencies": {
+    "expo": "*"
+  }
+}
