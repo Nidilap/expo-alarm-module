@@ -1,6 +1,6 @@
 {
   "name": "expo-alarm-module",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Modulo de alarme nativo",
   "main": "build/AlarmeModule.js",
   "types": "build/AlarmeModule.d.ts",
