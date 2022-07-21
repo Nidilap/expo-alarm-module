@@ -9,7 +9,7 @@ class AlarmeModule : Module() {
     Name("AlarmeModule")
   }
 
-  AsyncFunction("set") { details: ReadableMap, options: SetStringOptions ->
+  AsyncFunction("setAlarm") { details: ReadableMap, options: SetStringOptions ->
       val alarm: Alarm = parseAlarmObject(details)
       Manager.schedule(context, alarm)
       return@AsyncFunction true

@@ -5,9 +5,12 @@ import {
 } from './AlarmeModule.types';
 import AlarmeModuleExpo from './AlarmeModuleExpo';
 
-export async function set(alarm: Alarme = {} as Alarme): Promise<boolean | null> {
-    if (!AlarmeModuleExpo.set) {
+
+export async function set(alarm: Alarme = {}): Promise<boolean | null> {
+    if (!AlarmeModuleExpo.setAlarm) {
       throw new UnavailabilityError('AlarmeModule', 'set');
     }
-    return await AlarmeModuleExpo.set(alarm);
+    return await AlarmeModuleExpo.setAlarm(alarm);
   }
+
+export * from './AlarmeModule.types';
