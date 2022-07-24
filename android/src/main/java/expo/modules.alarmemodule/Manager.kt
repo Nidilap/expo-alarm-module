@@ -1,4 +1,4 @@
-package com.alarm
+package expo.modules.alarmemodule
 
 import android.content.Context
 

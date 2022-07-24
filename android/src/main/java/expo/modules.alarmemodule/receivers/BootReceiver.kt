@@ -1,4 +1,4 @@
-package com.alarm.receivers
+package expo.modules.alarmemodule.receivers
 
 import android.content.BroadcastReceiver
 import android.content.Context

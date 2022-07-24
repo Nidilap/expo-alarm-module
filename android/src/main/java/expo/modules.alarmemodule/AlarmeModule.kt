@@ -3,10 +3,32 @@ package expo.modules.alarmemodule
 import expo.modules.kotlin.modules.Module
 import expo.modules.kotlin.modules.ModuleDefinition
 import android.content.Intent
+import android.content.Context
+import android.content.ClipData
+import android.content.ClipDescription
+import android.content.ClipboardManager
+import android.os.Build
+import android.text.Html
+import android.text.Html.FROM_HTML_MODE_LEGACY
+import android.text.Spanned
+import android.text.TextUtils
+import android.util.Log
+import androidx.core.os.bundleOf
+import expo.modules.core.errors.ModuleDestroyedException
+import expo.modules.core.utilities.ifNull
+import expo.modules.kotlin.Promise
+import expo.modules.kotlin.exception.CodedException
+import kotlinx.coroutines.CoroutineExceptionHandler
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.launch
+import java.io.File
 
 class AlarmeModule : Module() {
   override fun definition() = ModuleDefinition {
-    Name("AlarmeModule")
+    name("AlarmeModule")
     
     AsyncFunction("setAlarm") { details: ReadableMap, options: SetStringOptions ->
         val alarm: Alarm = parseAlarmObject(details)
