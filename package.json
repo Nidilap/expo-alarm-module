@@ -1,6 +1,6 @@
 {
   "name": "expo-alarm-module",
-  "version": "0.1.4",
+  "version": "0.1.6",
   "description": "Provides an alarm module for expo (WIP)",
   "main": "build/AlarmeModule.js",
   "types": "build/AlarmeModule.d.ts",

@@ -1,4 +1,5 @@
 {
+  "name": "expo-alarm-module",
   "platforms": ["ios", "android", "web"],
   "ios": {
     "modulesClassNames": ["AlarmeModule"]

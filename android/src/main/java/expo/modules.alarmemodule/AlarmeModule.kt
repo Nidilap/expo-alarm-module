@@ -7,12 +7,12 @@ import android.content.Intent
 class AlarmeModule : Module() {
   override fun definition() = ModuleDefinition {
     Name("AlarmeModule")
-  }
-
-  AsyncFunction("setAlarm") { details: ReadableMap, options: SetStringOptions ->
-      val alarm: Alarm = parseAlarmObject(details)
-      Manager.schedule(context, alarm)
-      return@AsyncFunction true
+    
+    AsyncFunction("setAlarm") { details: ReadableMap, options: SetStringOptions ->
+        val alarm: Alarm = parseAlarmObject(details)
+        Manager.schedule(context, alarm)
+        return@AsyncFunction true
+    }
   }
 
   private val context
