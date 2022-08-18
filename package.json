@@ -1,42 +1,18 @@
+
 {
-  "name": "expo-alarm-module",
-  "version": "0.1.9",
-  "description": "Provides an alarm module for expo (WIP)",
-  "main": "build/AlarmeModule.js",
-  "types": "build/AlarmeModule.d.ts",
+  "name": "react-native-expo-alarm-module",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
   "scripts": {
-    "build": "expo-module build",
-    "clean": "expo-module clean",
-    "lint": "expo-module lint",
-    "test": "expo-module test",
-    "prepare": "expo-module prepare",
-    "prepublishOnly": "expo-module prepublishOnly",
-    "expo-module": "expo-module"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
-    "react-native",
-    "expo",
-    "expo-alarm-module"
+    "react-native"
   ],
-  "repository": "https://github.com/Nidilap/expo-alarm-module",
-  "bugs": {
-    "url": "/issues"
-  },
-  "author": "Mateus Andre",
-  "license": "MIT",
-  "homepage": "#readme",
-  "dependencies": {
-    "expo": "^45.0.6"
-  },
-  "devDependencies": {
-    "expo-module-scripts": "^2.0.0",
-    "expo-modules-core": "^0.9.0"
-  },
+  "author": "",
+  "license": "",
   "peerDependencies": {
-    "expo": "*"
-  },
-  "publishConfig": {
-    "access": "restricted",
-    "registry": "https://registry.npmjs.org/"
+    "react-native": "^0.41.2"
   }
 }

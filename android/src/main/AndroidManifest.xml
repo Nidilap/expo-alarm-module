@@ -1,2 +1,6 @@
-<manifest package="expo.modules.alarmemodule">
+
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.reactlibrary">
+
 </manifest>
+  

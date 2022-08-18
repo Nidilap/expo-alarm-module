@@ -1,17 +1,45 @@
-# expo-alarm-module
 
-Provides an alarm module for expo (WIP), still not working.
-# API documentation
+# react-native-expo-alarm-module
 
-- [Documentation for the master branch](https://github.com/expo/expo/blob/master/docs/pages/versions/unversioned/sdk/#readme.md)
-- [Documentation for the latest stable release](https://docs.expo.io/versions/latest/sdk/#readme/)
+## Getting started
 
-# Installation in managed Expo projects
+`$ npm install react-native-expo-alarm-module --save`
 
-For managed [managed](https://docs.expo.io/versions/latest/introduction/managed-vs-bare/) Expo projects, please follow the installation instructions in the [API documentation for the latest stable release](#api-documentation). If you follow the link and there is no documentation available then this library is not yet usable within managed projects &mdash; it is likely to be included in an upcoming Expo SDK release.
+### Mostly automatic installation
 
-### Add the package to your npm dependencies
+`$ react-native link react-native-expo-alarm-module`
 
+### Manual installation
+
+
+#### iOS
+
+1. In XCode, in the project navigator, right click `Libraries` ➜ `Add Files to [your project's name]`
+2. Go to `node_modules` ➜ `react-native-expo-alarm-module` and add `RNExpoAlarmModule.xcodeproj`
+3. In XCode, in the project navigator, select your project. Add `libRNExpoAlarmModule.a` to your project's `Build Phases` ➜ `Link Binary With Libraries`
+4. Run your project (`Cmd+R`)<
+
+#### Android
+
+1. Open up `android/app/src/main/java/[...]/MainActivity.java`
+  - Add `import com.reactlibrary.RNExpoAlarmModulePackage;` to the imports at the top of the file
+  - Add `new RNExpoAlarmModulePackage()` to the list returned by the `getPackages()` method
+2. Append the following lines to `android/settings.gradle`:
+  	```
+  	include ':react-native-expo-alarm-module'
+  	project(':react-native-expo-alarm-module').projectDir = new File(rootProject.projectDir, 	'../node_modules/react-native-expo-alarm-module/android')
+  	```
+3. Insert the following lines inside the dependencies block in `android/app/build.gradle`:
+  	```
+      compile project(':react-native-expo-alarm-module')
+  	```
+
+
+## Usage
+```javascript
+import RNExpoAlarmModule from 'react-native-expo-alarm-module';
+
+// TODO: What to do with the module?
+RNExpoAlarmModule;
 ```
-expo install expo-alarm-module
-```
+  
