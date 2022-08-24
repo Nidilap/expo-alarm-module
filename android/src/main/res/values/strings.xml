@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <string name="notification_channel_id">expo-alarm-module</string>
+  <string name="notification_channel_name">expo-alarm-channel</string>
+  <string name="notification_channel_desc">Ativa o alarm</string>
+</resources>
