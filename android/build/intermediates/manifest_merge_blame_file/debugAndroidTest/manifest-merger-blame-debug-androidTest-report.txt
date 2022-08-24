@@ -1,0 +1,40 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.alarmtestnidilap.test" >
+4
+5    <uses-sdk
+5-->C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4897530526778433245.xml:5:5-74
+6        android:minSdkVersion="21"
+6-->C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4897530526778433245.xml:5:15-41
+7        android:targetSdkVersion="31" />
+7-->C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4897530526778433245.xml:5:42-71
+8
+9    <instrumentation
+9-->C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4897530526778433245.xml:11:5-15:75
+10        android:name="android.test.InstrumentationTestRunner"
+10-->C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4897530526778433245.xml:11:22-75
+11        android:functionalTest="false"
+11-->C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4897530526778433245.xml:14:22-52
+12        android:handleProfiling="false"
+12-->C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4897530526778433245.xml:13:22-53
+13        android:label="Tests for com.alarmtestnidilap.test"
+13-->C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4897530526778433245.xml:15:22-73
+14        android:targetPackage="com.alarmtestnidilap.test" />
+14-->C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4897530526778433245.xml:12:22-71
+15
+16    <uses-permission android:name="android.permission.VIBRATE" />
+16-->[:] C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-66
+16-->[:] C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:22-63
+17
+18    <application
+18-->C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4897530526778433245.xml:7:5-9:19
+19        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+19-->[androidx.core:core:1.1.0] C:\Users\mateu\.gradle\caches\transforms-3\bc62198d919ae739895c48ee2274fabe\transformed\core-1.1.0\AndroidManifest.xml:24:18-86
+20        android:debuggable="true" >
+20-->C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4897530526778433245.xml:7:18-43
+21        <uses-library android:name="android.test.runner" />
+21-->C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4897530526778433245.xml:8:9-60
+21-->C:\Projetos\testes\alarm-test-nidilap\android\build\intermediates\tmp\manifest\androidTest\debug\manifestMerger4897530526778433245.xml:8:23-57
+22    </application>
+23
+24</manifest>

@@ -1,0 +1,30 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.expoalarmmodule" >
+4
+5    <uses-sdk
+6        android:minSdkVersion="21"
+6-->C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml
+7        android:targetSdkVersion="31" />
+7-->C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml
+8
+9    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
+9-->C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:4:5-79
+9-->C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:4:22-76
+10    <uses-permission android:name="android.permission.VIBRATE" />
+10-->C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:5:5-66
+10-->C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:5:22-63
+11    <uses-permission android:name="android.permission.INTERNET" />
+11-->C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:6:5-67
+11-->C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:6:22-64
+12    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+12-->C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:7:5-81
+12-->C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:7:22-78
+13    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+13-->C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:8:5-77
+13-->C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:8:22-74
+14    <uses-permission android:name="android.permission.WAKE_LOCK" />
+14-->C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:9:5-68
+14-->C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:9:22-65
+15
+16</manifest>

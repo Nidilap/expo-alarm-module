@@ -1,0 +1,5 @@
+R_DEF: Internal format may change without notice
+local
+string notification_channel_desc
+string notification_channel_id
+string notification_channel_name
