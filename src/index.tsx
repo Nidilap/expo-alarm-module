@@ -1,23 +1,22 @@
-import uuid from 'react-native-uuid';
 import { NativeModules, Platform } from 'react-native';
 import Alarm from './models/Alarm'
 
 const LINKING_ERROR =
-  `The package 'expo-alarm-module' doesn't seem to be linked. Make sure: \n\n` +
-  Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
-  '- You rebuilt the app after installing the package\n' +
-  '- You are not using Expo managed workflow\n';
+	`The package 'expo-alarm-module' doesn't seem to be linked. Make sure: \n\n` +
+	Platform.select({ ios: "- You have run 'pod install'\n", default: '' }) +
+	'- You rebuilt the app after installing the package\n' +
+	'- You are not using Expo managed workflow\n';
 
 const ExpoAlarmModule = NativeModules.ExpoAlarmModule
-  ? NativeModules.ExpoAlarmModule
-  : new Proxy(
-    {},
-    {
-      get() {
-        throw new Error(LINKING_ERROR);
-      },
-    }
-  );
+	? NativeModules.ExpoAlarmModule
+	: new Proxy(
+		{},
+		{
+			get() {
+				throw new Error(LINKING_ERROR);
+			},
+		}
+	);
 
 async function scheduleAlarm(alarm: Alarm) {
 	if (!(alarm instanceof Alarm)) {
@@ -74,7 +73,7 @@ async function getAlarmState() {
 
 
 export default Alarm;
-export { 
+export {
 	scheduleAlarm,
 	enableAlarm,
 	disableAlarm,
@@ -85,5 +84,5 @@ export {
 	removeAllAlarms,
 	getAllAlarms,
 	getAlarm,
-	getAlarmState 
+	getAlarmState
 };
