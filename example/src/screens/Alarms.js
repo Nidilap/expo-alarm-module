@@ -1,5 +1,5 @@
 import { Text, View, Button } from 'react-native';
-import { show, getAlarmState, getAllAlarms, disableAlarm, enableAlarm } from 'expo-alarm-module';
+import { getAlarmState, getAllAlarms, disableAlarm, enableAlarm } from 'expo-alarm-module';
 import AlarmView from '../components/AlarmView';
 import React, { useEffect, useState } from 'react';
 import { globalStyles } from '../global';
@@ -9,9 +9,22 @@ export default function ({ navigation }) {
   const [alarms, setAlarms] = useState(null);
   const [scheduler, setScheduler] = useState(null);
 
+  const alarmeTeste = () => {
+    let testeAlarme = 
+      {
+        uid:"4046380f-14bf-4bf0-a91f-740c7fdc5f64",
+        enabled:true,
+        title:"Alarm",
+        description:"Wake up",
+        hour:21,
+        minutes:17,
+        snoozeInterval:1,
+        repeating:false,
+        active:true,
+        days: new Date(new Date().getTime()+30000)
+      }
 
-  const seeNativeModules = () => {
-    show("teste");
+    await scheduleAlarm(testeAlarme);
   }
 
   useEffect(() => {
@@ -55,7 +68,7 @@ export default function ({ navigation }) {
           />
         ))}
       </View>
-      <Button title="teste" onPress={seeNativeModules} />
+      <Button title="teste" onPress={alarmeTeste} />
     </View>
   );
 }
