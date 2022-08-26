@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Projetos\\testes\\expo-alarm-module\\example\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
+            "outputFile": "C:\\Projetos\\expo-alarm-module\\example\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-port\\values-port.xml",
             "map": [
                 {
                     "source": "C:\\Users\\mateu\\.gradle\\caches\\transforms-3\\1cfd312f13f537668e1e1c85780e6dcd\\transformed\\appcompat-1.3.0\\res\\values-port\\values-port.xml",

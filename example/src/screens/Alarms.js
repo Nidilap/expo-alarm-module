@@ -63,7 +63,7 @@ export default function ({ navigation }) {
             title={a.title}
             hour={a.hour}
             minutes={a.minutes}
-            days={a.days}
+            days={a.day}
             isActive={a.active}
           />
         ))}

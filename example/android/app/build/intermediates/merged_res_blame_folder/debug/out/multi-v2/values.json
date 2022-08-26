@@ -1,8 +1,25 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Projetos\\testes\\expo-alarm-module\\example\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
+            "outputFile": "C:\\Projetos\\expo-alarm-module\\example\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values\\values.xml",
             "map": [
+                {
+                    "source": "C:\\Projetos\\expo-alarm-module\\example\\android\\app\\build\\generated\\res\\resValues\\debug\\values\\gradleResValues.xml",
+                    "from": {
+                        "startLines": "6,8",
+                        "startColumns": "4,4",
+                        "startOffsets": "161,269",
+                        "endColumns": "63,68",
+                        "endOffsets": "220,333"
+                    },
+                    "to": {
+                        "startLines": "654,655",
+                        "startColumns": "4,4",
+                        "startOffsets": "41527,41591",
+                        "endColumns": "63,68",
+                        "endOffsets": "41586,41655"
+                    }
+                },
                 {
                     "source": "C:\\Users\\mateu\\.gradle\\caches\\transforms-3\\026d9a07e2404c8e8b926c84dc89fc1c\\transformed\\lifecycle-runtime-2.3.1\\res\\values\\values.xml",
                     "from": {
@@ -18,6 +35,25 @@
                         "startOffsets": "40130",
                         "endColumns": "42",
                         "endOffsets": "40168"
+                    }
+                },
+                {
+                    "source": "C:\\Projetos\\expo-alarm-module\\example\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "from": {
+                        "startLines": "3",
+                        "startColumns": "4",
+                        "startOffsets": "57",
+                        "endLines": "6",
+                        "endColumns": "12",
+                        "endOffsets": "273"
+                    },
+                    "to": {
+                        "startLines": "823",
+                        "startColumns": "4",
+                        "startOffsets": "59795",
+                        "endLines": "826",
+                        "endColumns": "12",
+                        "endOffsets": "60008"
                     }
                 },
                 {
@@ -76,23 +112,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Projetos\\testes\\expo-alarm-module\\example\\android\\app\\build\\generated\\res\\resValues\\debug\\values\\gradleResValues.xml",
-                    "from": {
-                        "startLines": "6,8",
-                        "startColumns": "4,4",
-                        "startOffsets": "161,269",
-                        "endColumns": "63,68",
-                        "endOffsets": "220,333"
-                    },
-                    "to": {
-                        "startLines": "654,655",
-                        "startColumns": "4,4",
-                        "startOffsets": "41527,41591",
-                        "endColumns": "63,68",
-                        "endOffsets": "41586,41655"
-                    }
-                },
-                {
                     "source": "C:\\Users\\mateu\\.gradle\\caches\\transforms-3\\1cfd312f13f537668e1e1c85780e6dcd\\transformed\\appcompat-1.3.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49,50,51,52,53,54,55,56,57,58,59,60,61,62,63,64,65,66,67,68,69,70,71,72,73,74,75,76,77,78,79,80,81,82,83,84,85,86,87,88,89,90,91,92,93,94,95,96,97,98,99,100,101,102,103,104,105,106,107,108,109,110,111,112,113,114,115,116,117,118,119,120,121,122,123,124,125,126,127,128,129,130,131,132,133,134,135,136,137,138,139,140,141,142,143,144,145,146,147,148,149,150,151,152,153,154,155,156,157,158,159,160,161,162,163,164,165,166,167,168,169,170,171,172,173,174,175,176,177,178,179,180,181,182,183,184,185,186,187,188,189,190,191,192,193,194,195,196,197,198,199,200,201,202,203,204,205,206,207,208,209,210,211,212,213,221,222,226,230,234,239,245,252,256,260,265,269,273,277,281,285,289,295,299,305,309,315,319,324,328,331,335,341,345,351,355,361,364,368,372,376,380,384,385,386,387,390,393,396,399,403,404,405,406,407,410,412,414,416,421,422,426,432,436,437,439,451,452,456,462,466,467,468,472,499,503,504,508,536,708,734,906,932,963,971,977,993,1015,1020,1025,1035,1044,1053,1057,1064,1083,1090,1091,1100,1103,1106,1110,1114,1118,1121,1122,1127,1132,1142,1147,1154,1160,1161,1164,1168,1173,1175,1177,1180,1183,1185,1189,1192,1199,1202,1205,1209,1211,1215,1217,1219,1221,1225,1233,1241,1253,1259,1268,1271,1282,1285,1286,1291,1292,1297,1366,1436,1437,1447,1456,1457,1459,1463,1466,1469,1472,1475,1478,1481,1484,1488,1491,1494,1497,1501,1504,1508,1512,1513,1514,1515,1516,1517,1518,1519,1520,1521,1522,1523,1524,1525,1526,1527,1528,1529,1530,1531,1532,1534,1536,1537,1538,1539,1540,1541,1542,1543,1545,1546,1548,1549,1551,1553,1554,1556,1557,1558,1559,1560,1561,1563,1564,1565,1566,1567,1568,1570,1572,1574,1575,1576,1577,1578,1579,1580,1581,1582,1583,1584,1585,1586,1588,1589,1590,1591,1592,1593,1594,1596,1600,1604,1605,1606,1607,1608,1609,1613,1614,1615,1616,1618,1620,1622,1624,1626,1627,1628,1629,1631,1633,1635,1636,1637,1638,1639,1640,1641,1642,1643,1644,1645,1646,1649,1650,1651,1652,1654,1656,1657,1659,1660,1662,1664,1666,1667,1668,1669,1670,1671,1672,1673,1674,1675,1676,1677,1679,1680,1681,1682,1684,1685,1686,1687,1688,1690,1692,1694,1696,1697,1698,1699,1700,1701,1702,1703,1704,1705,1706,1707,1708,1709,1710,1711,1794,1797,1800,1803,1817,1828,1838,1868,1895,1904,1979,2382,2387,2415,2433,2469,2475,2481,2504,2645,2665,2671,2675,2681,2718,2730,2796,2820,2889,2908,2934",
@@ -129,23 +148,6 @@
                     }
                 },
                 {
-                    "source": "C:\\Projetos\\testes\\expo-alarm-module\\example\\android\\app\\src\\main\\res\\values\\strings.xml",
-                    "from": {
-                        "startLines": "1",
-                        "startColumns": "4",
-                        "startOffsets": "16",
-                        "endColumns": "60",
-                        "endOffsets": "72"
-                    },
-                    "to": {
-                        "startLines": "690",
-                        "startColumns": "4",
-                        "startOffsets": "44046",
-                        "endColumns": "60",
-                        "endOffsets": "44102"
-                    }
-                },
-                {
                     "source": "C:\\Users\\mateu\\.gradle\\caches\\transforms-3\\acda78127728beaf3cb34e67de212732\\transformed\\recyclerview-1.1.0\\res\\values\\values.xml",
                     "from": {
                         "startLines": "2,3,4,5,6,7,8,9,10",
@@ -162,23 +164,6 @@
                         "endLines": "56,345,346,347,355,356,357,583,6649",
                         "endColumns": "55,58,47,55,74,75,71,65,24",
                         "endOffsets": "3241,22450,22498,22554,23240,23316,23388,37777,416969"
-                    }
-                },
-                {
-                    "source": "C:\\Projetos\\testes\\expo-alarm-module\\android\\build\\intermediates\\packaged_res\\debug\\values\\values.xml",
-                    "from": {
-                        "startLines": "2,3,4",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55,123,193",
-                        "endColumns": "67,69,72",
-                        "endOffsets": "118,188,261"
-                    },
-                    "to": {
-                        "startLines": "776,777,778",
-                        "startColumns": "4,4,4",
-                        "startOffsets": "55879,55947,56017",
-                        "endColumns": "67,69,72",
-                        "endOffsets": "55942,56012,56085"
                     }
                 },
                 {
@@ -294,22 +279,37 @@
                     }
                 },
                 {
-                    "source": "C:\\Projetos\\testes\\expo-alarm-module\\example\\android\\app\\src\\main\\res\\values\\styles.xml",
+                    "source": "C:\\Projetos\\expo-alarm-module\\example\\android\\app\\src\\main\\res\\values\\strings.xml",
                     "from": {
-                        "startLines": "3",
+                        "startLines": "1",
                         "startColumns": "4",
-                        "startOffsets": "54",
-                        "endLines": "6",
-                        "endColumns": "12",
-                        "endOffsets": "267"
+                        "startOffsets": "17",
+                        "endColumns": "60",
+                        "endOffsets": "73"
                     },
                     "to": {
-                        "startLines": "823",
+                        "startLines": "690",
                         "startColumns": "4",
-                        "startOffsets": "59795",
-                        "endLines": "826",
-                        "endColumns": "12",
-                        "endOffsets": "60008"
+                        "startOffsets": "44046",
+                        "endColumns": "60",
+                        "endOffsets": "44102"
+                    }
+                },
+                {
+                    "source": "C:\\Projetos\\expo-alarm-module\\android\\build\\intermediates\\packaged_res\\debug\\values\\values.xml",
+                    "from": {
+                        "startLines": "2,3,4",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55,123,193",
+                        "endColumns": "67,69,72",
+                        "endOffsets": "118,188,261"
+                    },
+                    "to": {
+                        "startLines": "776,777,778",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "55879,55947,56017",
+                        "endColumns": "67,69,72",
+                        "endOffsets": "55942,56012,56085"
                     }
                 },
                 {

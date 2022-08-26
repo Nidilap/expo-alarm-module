@@ -1,7 +1,7 @@
 {
     "logs": [
         {
-            "outputFile": "C:\\Projetos\\testes\\expo-alarm-module\\example\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-lv\\values-lv.xml",
+            "outputFile": "C:\\Projetos\\expo-alarm-module\\example\\android\\app\\build\\intermediates\\incremental\\mergeDebugResources\\merged.dir\\values-lv\\values-lv.xml",
             "map": [
                 {
                     "source": "C:\\Users\\mateu\\.gradle\\caches\\transforms-3\\f382564408e8806e991bcb7c984abfd6\\transformed\\core-1.5.0\\res\\values-lv\\values-lv.xml",

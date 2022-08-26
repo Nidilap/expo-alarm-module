@@ -11,7 +11,7 @@ import com.facebook.react.shell.MainReactPackage;
 import java.util.Arrays;
 import java.util.ArrayList;
 
-// alarm-test-nidilap
+// expo-alarm-module
 import com.expoalarmmodule.ExpoAlarmModulePackage;
 // @react-native-community/datetimepicker
 import com.reactcommunity.rndatetimepicker.RNDateTimePickerPackage;

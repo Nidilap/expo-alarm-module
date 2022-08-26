@@ -1,49 +1,49 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:1:1-10:12
-INJECTED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:1:1-10:12
-INJECTED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:1:1-10:12
+ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:1:1-10:12
+INJECTED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:1:1-10:12
+INJECTED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:1:1-10:12
 	package
-		ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:2:11-40
-		INJECTED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml
-		INJECTED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml
+		ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:2:11-40
+		INJECTED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml
+		INJECTED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml
 	xmlns:android
-		ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:1:11-69
+		ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:1:11-69
 uses-permission#android.permission.SCHEDULE_EXACT_ALARM
-ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:4:5-79
+ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:4:5-79
 	android:name
-		ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:4:22-76
+		ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:4:22-76
 uses-permission#android.permission.VIBRATE
-ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:5:5-66
+ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:5:5-66
 	android:name
-		ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:5:22-63
+		ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:5:22-63
 uses-permission#android.permission.INTERNET
-ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:6:5-67
+ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:6:5-67
 	android:name
-		ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:6:22-64
+		ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:6:22-64
 uses-permission#android.permission.RECEIVE_BOOT_COMPLETED
-ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:7:5-81
+ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:7:5-81
 	android:name
-		ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:7:22-78
+		ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:7:22-78
 uses-permission#android.permission.FOREGROUND_SERVICE
-ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:8:5-77
+ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:8:5-77
 	android:name
-		ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:8:22-74
+		ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:8:22-74
 uses-permission#android.permission.WAKE_LOCK
-ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:9:5-68
+ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:9:5-68
 	android:name
-		ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml:9:22-65
+		ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml:9:22-65
 uses-sdk
-INJECTED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml reason: use-sdk injection requested
-INJECTED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml
-INJECTED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml
-INJECTED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml
-INJECTED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml
+INJECTED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml
+INJECTED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml
+INJECTED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml
+INJECTED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml
 	android:targetSdkVersion
-		INJECTED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml
-		ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml
-		INJECTED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml
+		INJECTED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml
+		ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml
+		INJECTED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml
 	android:minSdkVersion
-		INJECTED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml
-		ADDED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml
-		INJECTED from C:\Projetos\testes\expo-alarm-module\android\src\main\AndroidManifest.xml
+		INJECTED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml
+		ADDED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml
+		INJECTED from C:\Projetos\expo-alarm-module\android\src\main\AndroidManifest.xml

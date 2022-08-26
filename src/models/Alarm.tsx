@@ -1,5 +1,5 @@
 import uuid from 'react-native-uuid';
-import { toAndroidDays, fromAndroidDays, getParam } from "src/utils";
+import { toAndroidDays, fromAndroidDays, getParam } from "../utils";
 
 class Alarm {
 	uid?: string | undefined;
