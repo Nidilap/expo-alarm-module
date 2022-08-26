@@ -84,8 +84,8 @@ export default function ({ route, navigation }) {
           />
           {alarm.repeating && (
             <DayPicker
-              onChange={v => update([['days', v]])}
-              activeDays={alarm.days}
+              onChange={v => update([['day', v]])}
+              activeDays={alarm.day}
             />
           )}
         </View>
