@@ -1,6 +1,6 @@
 {
   "name": "expo-alarm-module",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Provides an alarm module for expo bare workflow (tested with version 0.64 to 0.68 of RN)",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
