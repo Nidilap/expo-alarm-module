@@ -23,7 +23,7 @@ class Alarm {
 		this.snoozeInterval = getParam(params, 'snoozeInterval', 1);
 		this.repeating = getParam(params, 'repeating', false);
 		this.active = getParam(params, 'active', true);
-		this.day = getParam(params, 'days', [new Date().getDay()]);
+		this.day = getParam(params, 'day', [new Date().getDay()]);
 	}
 
 	static getEmpty() {

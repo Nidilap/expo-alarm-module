@@ -15,7 +15,9 @@ import com.facebook.react.bridge.WritableNativeArray;
 import com.facebook.react.bridge.WritableNativeMap;
 import com.facebook.react.module.annotations.ReactModule;
 
+import java.time.ZonedDateTime;
 import java.util.ArrayList;
+import java.util.Date;
 
 @ReactModule(name = ExpoAlarmModuleModule.NAME)
 public class ExpoAlarmModuleModule extends ReactContextBaseJavaModule {
@@ -131,14 +133,25 @@ public class ExpoAlarmModuleModule extends ReactContextBaseJavaModule {
     int snoozeInterval = alarm.getInt("snoozeInterval");
     boolean repeating = alarm.getBoolean("repeating");
     boolean active = alarm.getBoolean("active");
+
     ArrayList<Integer> days = new ArrayList<>();
-    if (!alarm.isNull("days")) {
-      ReadableArray rawDays = alarm.getArray("days");
-      for (int i = 0; i < rawDays.size(); i++) {
-        days.add(rawDays.getInt(i));
+
+    ZonedDateTime date = null;
+
+    if (!alarm.isNull("day")) {
+      try {
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
+          date = ZonedDateTime.parse(alarm.getString("day"));
+        }
+      } catch(Exception e) { // Se não conseguir obter a string, tenta obter o array
+        System.out.println(e);
+        ReadableArray rawDays = alarm.getArray("day");
+        for (int i = 0; i < rawDays.size(); i++) {
+          days.add(rawDays.getInt(i));
+        }
       }
     }
-    return new Alarm(uid, days, hour, minutes, snoozeInterval, title, description, repeating, active);
+    return new Alarm(uid, days, date, hour, minutes, snoozeInterval, title, description, repeating, active);
   }
 
   private WritableMap serializeAlarmObject (Alarm alarm) {
@@ -152,6 +165,7 @@ public class ExpoAlarmModuleModule extends ReactContextBaseJavaModule {
     map.putArray("days", serializeArray(alarm.days));
     map.putBoolean("repeating", alarm.repeating);
     map.putBoolean("active", alarm.active);
+    map.putString("date", alarm.date.toString());
     return map;
   }
 

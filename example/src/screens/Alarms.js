@@ -1,5 +1,5 @@
 import { Text, View, Button } from 'react-native';
-import { getAlarmState, getAllAlarms, disableAlarm, enableAlarm } from 'expo-alarm-module';
+import { getAlarmState, getAllAlarms, disableAlarm, enableAlarm, scheduleAlarm } from 'expo-alarm-module';
 import AlarmView from '../components/AlarmView';
 import React, { useEffect, useState } from 'react';
 import { globalStyles } from '../global';
@@ -12,7 +12,7 @@ export default function ({ navigation }) {
   const alarmeTeste = async () => {
     let testeAlarme = 
       {
-        uid:"4046380f-14bf-4bf0-a91f-740c7fdc5f64",
+        uid:"4046380f-14bf-4bf0-a91f-740c7fdc5f24",
         enabled:true,
         title:"Alarm",
         description:"Wake up",
@@ -23,6 +23,8 @@ export default function ({ navigation }) {
         active:true,
         day: new Date(new Date().getTime()+30000)
       }
+
+    debugger
 
     await scheduleAlarm(testeAlarme);
   }

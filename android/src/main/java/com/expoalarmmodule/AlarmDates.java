@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class AlarmDates {
 
@@ -15,12 +16,12 @@ public class AlarmDates {
     Date[] dates;
     int[] notificationIds;
 
-    public AlarmDates (String alarmUid, Date[] dates) {
+    public AlarmDates (String alarmUid, List<Date> dates) {
         this.uid = alarmUid + postfix;
         this.alarmUid = alarmUid;
-        this.dates = dates;
-        this.notificationIds = new int[dates.length];
-        for (int i = 0; i < dates.length; i++) {
+        this.dates = dates.toArray(new Date[0]);
+        this.notificationIds = new int[dates.size()];
+        for (int i = 0; i < dates.size(); i++) {
             this.notificationIds[i] = randomId();
         }
     }
