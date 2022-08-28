@@ -1,5 +1,5 @@
-import { Text, View, Button } from 'react-native';
-import { getAlarmState, getAllAlarms, disableAlarm, enableAlarm, scheduleAlarm } from 'expo-alarm-module';
+import { Text, View, Button, TextInput } from 'react-native';
+import { getAlarmState, getAllAlarms, disableAlarm, enableAlarm, scheduleAlarm, getAlarm } from 'expo-alarm-module';
 import AlarmView from '../components/AlarmView';
 import React, { useEffect, useState } from 'react';
 import { globalStyles } from '../global';
@@ -9,22 +9,22 @@ export default function ({ navigation }) {
   const [alarms, setAlarms] = useState(null);
   const [scheduler, setScheduler] = useState(null);
 
-  const alarmeTeste = async () => {
-    let testeAlarme = 
-      {
-        uid:"4046380f-14bf-4bf0-a91f-740c7fdc5f24",
-        enabled:true,
-        title:"Alarm",
-        description:"Wake up",
-        hour:21,
-        minutes:17,
-        snoozeInterval:1,
-        repeating:false,
-        active:true,
-        day: new Date(new Date().getTime()+30000)
-      }
+  const [idAlarm, setIdAlarm] = useState('1');
 
-    debugger
+  const alarmeTeste = async () => {
+
+
+    let testeAlarme =
+    {
+      uid: idAlarm ? idAlarm : '1',
+      enabled: true,
+      title: "Alarm",
+      description: "Wake up",
+      snoozeInterval: 1,
+      repeating: false,
+      active: true,
+      day: new Date(new Date().getTime() + 360000)
+    }
 
     await scheduleAlarm(testeAlarme);
   }
@@ -40,7 +40,7 @@ export default function ({ navigation }) {
     fetchState();
   }, []);
 
-  async function fetchState () {
+  async function fetchState() {
     const alarmUid = await getAlarmState();
     if (alarmUid) {
       navigation.navigate('Ring', { alarmUid });
@@ -70,7 +70,16 @@ export default function ({ navigation }) {
           />
         ))}
       </View>
+      <TextInput title="teste" onChange={texto => setIdAlarm(texto)}/>
       <Button title="teste" onPress={alarmeTeste} />
+      <Button title="get All alarms" onPress={async () => {
+        console.log("TESTANDOO ASTENTION")
+        console.log(await getAllAlarms());
+      }} />
+      <Button title="get Alarm teste" onPress={async () => {
+        console.log("TESTANDOO get")
+        console.log(await getAlarm('1'));
+      }} />
     </View>
   );
 }

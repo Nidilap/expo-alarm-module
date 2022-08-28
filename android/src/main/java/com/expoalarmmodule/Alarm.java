@@ -2,6 +2,8 @@ package com.expoalarmmodule;
 
 import android.os.Build;
 
+import androidx.annotation.RequiresApi;
+
 import com.google.gson.Gson;
 
 import java.time.ZonedDateTime;
@@ -17,6 +19,7 @@ public class Alarm implements Cloneable {
     String uid;
 
     ZonedDateTime date;
+    String dateString;
 
     ArrayList<Integer> days;
     int hour;
@@ -65,11 +68,15 @@ public class Alarm implements Cloneable {
         return new AlarmDates(uid, getDates());
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.O)
     static Alarm fromJson(String json) {
-        return new Gson().fromJson(json, Alarm.class);
+      Alarm alarmTemp = new Gson().fromJson(json, Alarm.class);
+      alarmTemp.date = ZonedDateTime.parse(alarmTemp.dateString);
+      return alarmTemp;
     }
 
     static String toJson(Alarm alarm) {
+        alarm.dateString = alarm.date.toString();
         return new Gson().toJson(alarm);
     }
 

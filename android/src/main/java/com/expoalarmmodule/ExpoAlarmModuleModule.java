@@ -1,8 +1,10 @@
 package com.expoalarmmodule;
 
 import android.content.Intent;
+import android.os.Build;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
@@ -128,8 +130,12 @@ public class ExpoAlarmModuleModule extends ReactContextBaseJavaModule {
     String uid = alarm.getString("uid");
     String title = alarm.getString("title");
     String description = alarm.getString("description");
-    int hour = alarm.getInt("hour");
-    int minutes = alarm.getInt("minutes");
+
+    int hour =  alarm.hasKey("hour") ?
+      alarm.getInt("hour") : -1;
+
+    int minutes = alarm.hasKey("minutes") ? alarm.getInt("minutes") : -1;
+
     int snoozeInterval = alarm.getInt("snoozeInterval");
     boolean repeating = alarm.getBoolean("repeating");
     boolean active = alarm.getBoolean("active");
@@ -141,31 +147,45 @@ public class ExpoAlarmModuleModule extends ReactContextBaseJavaModule {
     if (!alarm.isNull("day")) {
       try {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.O) {
-          date = ZonedDateTime.parse(alarm.getString("day"));
+          if(alarm.hasKey("day")) {
+            ZonedDateTime dateTemp = ZonedDateTime.parse(alarm.getString("day"));
+            // Date sucessful.
+            date = dateTemp;
+          }
         }
       } catch(Exception e) { // Se não conseguir obter a string, tenta obter o array
         System.out.println(e);
         ReadableArray rawDays = alarm.getArray("day");
         for (int i = 0; i < rawDays.size(); i++) {
-          days.add(rawDays.getInt(i));
+          days.add(rawDays.getInt(i) + 1);
         }
       }
     }
     return new Alarm(uid, days, date, hour, minutes, snoozeInterval, title, description, repeating, active);
   }
 
-  private WritableMap serializeAlarmObject (Alarm alarm) {
+  private WritableMap serializeAlarmObject (Alarm alarm) throws Exception {
     WritableNativeMap map = new WritableNativeMap();
     map.putString("uid", alarm.uid);
     map.putString("title", alarm.title);
     map.putString("description", alarm.description);
-    map.putInt("hour", alarm.hour);
-    map.putInt("minutes", alarm.minutes);
     map.putInt("snoozeInterval", alarm.snoozeInterval);
-    map.putArray("days", serializeArray(alarm.days));
     map.putBoolean("repeating", alarm.repeating);
     map.putBoolean("active", alarm.active);
-    map.putString("date", alarm.date.toString());
+
+    if( alarm.date != null) {
+      if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+        map.putString("day", alarm.date.toString());
+        map.putInt("minutes", alarm.date.getMinute());
+        map.putInt("hour", alarm.date.getHour());
+      } else {
+        throw new Exception("Versao de android muito baixa!");
+      }
+    } else if(alarm.days.size() > 0) {
+      map.putInt("hour", alarm.hour);
+      map.putInt("minutes", alarm.minutes);
+      map.putArray("days", serializeArray(alarm.days));
+    }
     return map;
   }
 
@@ -175,7 +195,7 @@ public class ExpoAlarmModuleModule extends ReactContextBaseJavaModule {
     return array;
   }
 
-  private WritableNativeArray serializeArray (Alarm[] a) {
+  private WritableNativeArray serializeArray (Alarm[] a) throws Exception {
     WritableNativeArray array = new WritableNativeArray();
     for (Alarm alarm : a) array.pushMap(serializeAlarmObject(alarm));
     return array;

@@ -16,7 +16,7 @@ export const globalStyles = StyleSheet.create({
   },
   innerContainer: {
     width: '90%',
-    height: '90%',
+    height: '50%',
     display: 'flex',
     alignItems: 'center',
   }
