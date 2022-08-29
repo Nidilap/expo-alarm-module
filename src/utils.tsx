@@ -10,7 +10,7 @@ function getParam(param: any, key: any, defaultValue: any) {
 	}
 }
 
-function toAndroidDays(daysArray: Date | number[] | undefined) {
+function toAndroidDays(daysArray: string | Date | number[] | undefined) {
 	if (daysArray) {
 		if (Array.isArray(daysArray)) {
 			return daysArray.map(day => (day + 1) % 7);
@@ -23,7 +23,7 @@ function toAndroidDays(daysArray: Date | number[] | undefined) {
 	}
 }
 
-function fromAndroidDays(daysArray: Date | number[] | undefined) {
+function fromAndroidDays(daysArray: string | Date | number[] | undefined) {
 	if (daysArray) {
 		if(Array.isArray(daysArray)) {
 			return daysArray.map(d => d === 0 ? 6 : d - 1);

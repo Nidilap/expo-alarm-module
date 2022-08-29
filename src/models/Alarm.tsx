@@ -11,7 +11,7 @@ class Alarm {
 	snoozeInterval?: number | undefined;
 	repeating?: boolean | undefined;
 	active?: boolean | undefined;
-	day?: Date | number[] | undefined;
+	day?: string | Date | number[] | undefined;
 
 	constructor(params: any = null) {
 		this.uid = getParam(params, 'uid', uuid.v4());
@@ -33,14 +33,14 @@ class Alarm {
 			hour: 0,
 			minutes: 0,
 			repeating: false,
-			days: [],
+			day: [],
 		});
 	}
 
 	toAndroid() {
 		return {
 			...this,
-			days: toAndroidDays(this.day)
+			day: toAndroidDays(this.day)
 		}
 	}
 

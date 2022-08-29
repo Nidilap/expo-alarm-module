@@ -22,6 +22,11 @@ async function scheduleAlarm(alarm: Alarm) {
 	if (!(alarm instanceof Alarm)) {
 		alarm = new Alarm(alarm);
 	}
+
+	if (alarm.day instanceof Date) {
+		alarm.day = alarm.day.toJSON();
+	}
+
 	await ExpoAlarmModule.set(alarm.toAndroid());
 	console.log('scheduling alarm: ', JSON.stringify(alarm))
 }
@@ -50,6 +55,11 @@ async function updateAlarm(alarm: Alarm) {
 	if (!(alarm instanceof Alarm)) {
 		alarm = new Alarm(alarm);
 	}
+
+	if (alarm.day instanceof Date) {
+		alarm.day = alarm.day.toJSON();
+	}
+	
 	await ExpoAlarmModule.update(alarm.toAndroid());
 }
 
