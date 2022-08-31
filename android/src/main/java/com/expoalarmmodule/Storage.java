@@ -37,7 +37,12 @@ class Storage {
 
     static Alarm getAlarm(Context context, String alarmUid) {
         SharedPreferences preferences = getSharedPreferences(context);
-        return Alarm.fromJson(preferences.getString(alarmUid, null));
+        String preferenceUid = preferences.getString(alarmUid, null);
+        if(preferenceUid != null) {
+          return Alarm.fromJson(preferenceUid);
+        } else {
+          return null;
+        }
     }
 
     static AlarmDates getDates(Context context, String alarmUid) {
