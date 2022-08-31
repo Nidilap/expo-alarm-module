@@ -63,13 +63,15 @@ public class Manager {
             sound.stop();
         }
         Alarm alarm = Storage.getAlarm(context, alarmUid);
-        AlarmDates dates = Storage.getDates(context, alarm.uid);
-        Storage.removeAlarm(context, alarm.uid);
-        Storage.removeDates(context, alarm.uid);
-        if (dates == null) return;
-        for (Date date : dates.getDates()) {
+        if(alarm != null) {
+          AlarmDates dates = Storage.getDates(context, alarm.uid);
+          Storage.removeAlarm(context, alarm.uid);
+          Storage.removeDates(context, alarm.uid);
+          if (dates == null) return;
+          for (Date date : dates.getDates()) {
             int notificationID = dates.getNotificationId(date);
             Helper.cancelAlarm(context, notificationID);
+          }
         }
     }
 
