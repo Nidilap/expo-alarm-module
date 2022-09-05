@@ -37,7 +37,9 @@
           android:name="com.expoalarmmodule.receivers.BootReceiver"
           android:exported="true"
         >
-          <intent-filter>
+          <intent-filter
+            android:priority="999"
+          >
               <action android:name="android.intent.action.BOOT_COMPLETED" />
           </intent-filter>
         </receiver>

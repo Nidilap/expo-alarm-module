@@ -23,7 +23,7 @@ export default function ({ navigation }) {
       snoozeInterval: 1,
       repeating: false,
       active: true,
-      day: new Date(new Date().getTime() + 360000)
+      day: new Date(new Date().getTime() + 300000)
     }
 
     await scheduleAlarm(testeAlarme);
