@@ -1,10 +1,10 @@
 -- Merging decision tree log ---
 manifest
-ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:1-48:12
-INJECTED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:1-48:12
-INJECTED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:1-48:12
-INJECTED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:1-48:12
-MERGED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:1-48:12
+ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:1-50:12
+INJECTED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:1-50:12
+INJECTED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:1-50:12
+INJECTED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:1-50:12
+MERGED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:1-50:12
 MERGED from [hermes-debug.aar] C:\Users\mateu\.gradle\caches\transforms-3\824badf0bb8273fc223023171b7ca545\transformed\jetified-hermes-debug\AndroidManifest.xml:2:1-7:12
 MERGED from [com.facebook.flipper:flipper:0.125.0] C:\Users\mateu\.gradle\caches\transforms-3\b2ec3232205e095c09543a31d56ae642\transformed\jetified-flipper-0.125.0\AndroidManifest.xml:8:1-18:12
 MERGED from [com.facebook.flipper:flipper-network-plugin:0.125.0] C:\Users\mateu\.gradle\caches\transforms-3\674677064ce29f9763dc420868735b8b\transformed\jetified-flipper-network-plugin-0.125.0\AndroidManifest.xml:8:1-15:12
@@ -77,13 +77,13 @@ INJECTED from C:\Projetos\expo-alarm-module\example\android\app\src\debug\Androi
 		INJECTED from C:\Projetos\expo-alarm-module\example\android\app\src\debug\AndroidManifest.xml
 	android:versionName
 		INJECTED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:1-48:12
+		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:1-50:12
 		INJECTED from C:\Projetos\expo-alarm-module\example\android\app\src\debug\AndroidManifest.xml
 	xmlns:tools
 		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\debug\AndroidManifest.xml:3:5-51
 	android:versionCode
 		INJECTED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml
-		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:1-48:12
+		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:1-50:12
 		INJECTED from C:\Projetos\expo-alarm-module\example\android\app\src\debug\AndroidManifest.xml
 	xmlns:android
 		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:1:11-69
@@ -126,9 +126,9 @@ MERGED from [:expo-alarm-module] C:\Projetos\expo-alarm-module\android\build\int
 	android:name
 		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:9:22-65
 application
-ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:11:5-47:19
-MERGED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:11:5-47:19
-MERGED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:11:5-47:19
+ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:11:5-49:19
+MERGED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:11:5-49:19
+MERGED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:11:5-49:19
 MERGED from [:react-native-community_datetimepicker] C:\Projetos\expo-alarm-module\example\node_modules\@react-native-community\datetimepicker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-20
 MERGED from [:react-native-community_datetimepicker] C:\Projetos\expo-alarm-module\example\node_modules\@react-native-community\datetimepicker\android\build\intermediates\merged_manifest\debug\AndroidManifest.xml:9:5-20
 MERGED from [com.facebook.react:react-native:0.68.2] C:\Users\mateu\.gradle\caches\transforms-3\7d9d92dc8ec1ba2e45aff2ecbb549550\transformed\jetified-react-native-0.68.2\AndroidManifest.xml:9:5-20
@@ -200,29 +200,31 @@ ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidMan
 	android:name
 		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:32:13-71
 receiver#com.expoalarmmodule.receivers.BootReceiver
-ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:36:9-43:20
+ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:36:9-45:20
 	android:exported
 		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:38:11-34
 	android:name
 		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:37:11-68
 intent-filter#action:name:android.intent.action.BOOT_COMPLETED
-ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:40:11-42:27
+ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:40:11-44:27
+	android:priority
+		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:41:13-35
 action#android.intent.action.BOOT_COMPLETED
-ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:41:15-77
+ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:43:15-77
 	android:name
-		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:41:23-74
+		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:43:23-74
 activity#com.facebook.react.devsupport.DevSettingsActivity
-ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:44:7-84
-MERGED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:44:7-84
-MERGED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:44:7-84
+ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:46:7-84
+MERGED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:46:7-84
+MERGED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:46:7-84
 	android:exported
 		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\debug\AndroidManifest.xml:11:84-108
 	android:name
-		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:44:17-81
+		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:46:17-81
 service#com.expoalarmmodule.AlarmService
-ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:46:7-66
+ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:48:7-66
 	android:name
-		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:46:16-63
+		ADDED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:48:16-63
 uses-sdk
 INJECTED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml reason: use-sdk injection requested
 INJECTED from C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml

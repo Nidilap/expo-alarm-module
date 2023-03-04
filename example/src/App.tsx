@@ -18,7 +18,7 @@ export default function () {
         <Stack.Screen
           name="Alarms"
           component={Home}
-          options={(params: any) => ({
+          options={(params: any): any => ({
             ...headerStyles,
             title: 'Alarms',
             headerRight: () => (
@@ -32,7 +32,7 @@ export default function () {
         <Stack.Screen
           name="Edit"
           component={Settings}
-          options={{...headerStyles, title: 'Alarm'}}
+          options={{...headerStyles, title: 'Alarm'} as any}
         />
         <Stack.Screen
           name="Ring"
@@ -48,8 +48,7 @@ function AddButton ({title, onPress}) {
   return (
     <TouchableOpacity
       style={styles.button}
-      onPress={onPress}
-      underlayColor='#fff'>
+      onPress={onPress}>
       <Text style={styles.buttonText}>{title}</Text>
     </TouchableOpacity>
   )

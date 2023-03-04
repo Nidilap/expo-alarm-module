@@ -187,7 +187,7 @@ class Helper {
             pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), notificationId, intent, 0);
         }
 
-        return 
+        return pendingIntent;
     }
 
     static Calendar getDate(int day, int hour, int minute) {

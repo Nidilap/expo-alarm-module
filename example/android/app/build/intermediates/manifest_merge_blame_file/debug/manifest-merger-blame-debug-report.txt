@@ -34,7 +34,7 @@
 18-->[com.facebook.flipper:flipper:0.125.0] C:\Users\mateu\.gradle\caches\transforms-3\b2ec3232205e095c09543a31d56ae642\transformed\jetified-flipper-0.125.0\AndroidManifest.xml:16:22-73
 19
 20    <application
-20-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:11:5-47:19
+20-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:11:5-49:19
 21        android:name="com.example.expoalarmmodule.MainApplication"
 21-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:12:7-38
 22        android:allowBackup="false"
@@ -53,9 +53,9 @@
 29        android:usesCleartextTraffic="true" >
 29-->C:\Projetos\expo-alarm-module\example\android\app\src\debug\AndroidManifest.xml:8:9-44
 30        <activity
-30-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:44:7-84
+30-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:46:7-84
 31            android:name="com.facebook.react.devsupport.DevSettingsActivity"
-31-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:44:17-81
+31-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:46:17-81
 32            android:exported="false" />
 32-->C:\Projetos\expo-alarm-module\example\android\app\src\debug\AndroidManifest.xml:11:84-108
 33        <activity
@@ -93,22 +93,23 @@
 50            android:exported="true" />
 50-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:34:13-36
 51        <receiver
-51-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:36:9-43:20
+51-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:36:9-45:20
 52            android:name="com.expoalarmmodule.receivers.BootReceiver"
 52-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:37:11-68
 53            android:exported="true" >
 53-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:38:11-34
-54            <intent-filter>
-54-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:40:11-42:27
+54            <intent-filter android:priority="999" >
+54-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:40:11-44:27
+54-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:41:13-35
 55                <action android:name="android.intent.action.BOOT_COMPLETED" />
-55-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:41:15-77
-55-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:41:23-74
+55-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:43:15-77
+55-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:43:23-74
 56            </intent-filter>
 57        </receiver>
 58
 59        <service android:name="com.expoalarmmodule.AlarmService" />
-59-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:46:7-66
-59-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:46:16-63
+59-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:48:7-66
+59-->C:\Projetos\expo-alarm-module\example\android\app\src\main\AndroidManifest.xml:48:16-63
 60    </application>
 61
 62</manifest>
