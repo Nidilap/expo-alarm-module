@@ -52,12 +52,25 @@ class Helper {
     static void cancelAlarm(Context context, int notificationID) {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmReceiver.class);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+        PendingIntent pendingIntent = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            pendingIntent = PendingIntent.getBroadcast(
+                context,
+                notificationID,
+                intent,
+                PendingIntent.FLAG_MUTABLE
+            );
+        }
+        else
+        {
+            
+            pendingIntent = PendingIntent.getBroadcast(
                 context,
                 notificationID,
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT
-        );
+            );
+        }
         alarmManager.cancel(pendingIntent);
         Log.d(TAG, "canceling alarm with notification id: " + notificationID);
     }
@@ -143,18 +156,38 @@ class Helper {
     private static PendingIntent createOnClickedIntent(Context context, String alarmUid, int notificationID) {
         Intent resultIntent = new Intent(context, Helper.getMainActivityClass(context));
         resultIntent.putExtra("ALARM_UID", alarmUid);
-        return PendingIntent.getActivity(
+
+        PendingIntent pendingIntent = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {  
+            pendingIntent = PendingIntent.getActivity(
+                context,
+                notificationID,
+                resultIntent,
+                PendingIntent.FLAG_MUTABLE);
+        } else {
+            pendingIntent = PendingIntent.getActivity(
                 context,
                 notificationID,
                 resultIntent,
                 PendingIntent.FLAG_UPDATE_CURRENT);
+        }
+
+        return pendingIntent;
     }
 
     private static PendingIntent createOnDismissedIntent(Context context, String alarmUid, int notificationId) {
         Intent intent = new Intent(context, DismissReceiver.class);
         intent.putExtra("NOTIFICATION_ID", notificationId);
         intent.putExtra("ALARM_UID", alarmUid);
-        return PendingIntent.getBroadcast(context.getApplicationContext(), notificationId, intent, 0);
+
+        PendingIntent pendingIntent = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {  
+            pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), notificationId, intent, PendingIntent.FLAG_MUTABLE);
+        } else {
+            pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), notificationId, intent, 0);
+        }
+
+        return 
     }
 
     static Calendar getDate(int day, int hour, int minute) {
