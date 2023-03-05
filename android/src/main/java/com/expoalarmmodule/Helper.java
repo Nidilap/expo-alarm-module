@@ -31,12 +31,26 @@ class Helper {
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, AlarmReceiver.class);
         intent.putExtra("ALARM_UID", alarmUid);
-        PendingIntent pendingIntent = PendingIntent.getBroadcast(
+
+        PendingIntent pendingIntent = null;
+        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {
+            pendingIntent = PendingIntent.getBroadcast(
+                context,
+                notificationID,
+                intent,
+                PendingIntent.FLAG_MUTABLE
+            );
+        }
+        else
+        {  
+            pendingIntent = PendingIntent.getBroadcast(
                 context,
                 notificationID,
                 intent,
                 PendingIntent.FLAG_UPDATE_CURRENT
-        );
+            );
+        }
+
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             alarmManager.setExactAndAllowWhileIdle(AlarmManager.RTC_WAKEUP, triggerAtMillis, pendingIntent);
         } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
