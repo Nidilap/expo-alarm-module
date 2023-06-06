@@ -13,6 +13,9 @@ import java.util.Date;
 import java.util.GregorianCalendar;
 import java.util.List;
 
+import static com.expoalarmmodule.GsonUtil.createSerialize;
+
+
 
 public class Alarm implements Cloneable {
 
@@ -70,14 +73,14 @@ public class Alarm implements Cloneable {
 
     @RequiresApi(api = Build.VERSION_CODES.O)
     static Alarm fromJson(String json) {
-      Alarm alarmTemp = new Gson().fromJson(json, Alarm.class);
+      Alarm alarmTemp = createSerialize().fromJson(json, Alarm.class);
       alarmTemp.date = ZonedDateTime.parse(alarmTemp.dateString);
       return alarmTemp;
     }
 
     static String toJson(Alarm alarm) {
         alarm.dateString = alarm.date.toString();
-        return new Gson().toJson(alarm);
+        return createSerialize().toJson(alarm);
     }
 
     public Alarm clone () throws CloneNotSupportedException {

@@ -126,6 +126,7 @@ dependencies {
     //noinspection GradleDynamicVersion
   implementation "com.facebook.react:react-native:+"
   implementation 'com.google.code.gson:gson:2.8.5'
+  implementation "io.goodforgod:gson-configuration:2.0.0"
 // From node_modules
 }
 

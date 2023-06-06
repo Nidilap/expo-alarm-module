@@ -1,11 +1,7 @@
 <component name="libraryTable">
   <library name="Gradle: com.facebook.fresco:memory-type-java:2.5.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/d18a07ea46a103792abac52442eb6e14/transformed/memory-type-java-2.5.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d18a07ea46a103792abac52442eb6e14/transformed/memory-type-java-2.5.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/d18a07ea46a103792abac52442eb6e14/transformed/memory-type-java-2.5.0/AndroidManifest.xml" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/c693a81647fb224e9fc45ee57bfe7858/transformed/jetified-memory-type-java-2.5.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c693a81647fb224e9fc45ee57bfe7858/transformed/jetified-memory-type-java-2.5.0/res" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/c693a81647fb224e9fc45ee57bfe7858/transformed/jetified-memory-type-java-2.5.0/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>

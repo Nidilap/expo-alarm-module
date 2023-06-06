@@ -1,11 +1,7 @@
 <component name="libraryTable">
   <library name="Gradle: com.facebook.fresco:ui-common:2.5.0@aar">
     <CLASSES>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/2cd8afc95c8c43f85d55e2152f8a4680/transformed/ui-common-2.5.0/jars/classes.jar!/" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2cd8afc95c8c43f85d55e2152f8a4680/transformed/ui-common-2.5.0/res" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/2cd8afc95c8c43f85d55e2152f8a4680/transformed/ui-common-2.5.0/AndroidManifest.xml" />
       <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dbc9708ce1e1284bd77d6b4a4985b51d/transformed/jetified-ui-common-2.5.0/AndroidManifest.xml" />
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-3/dbc9708ce1e1284bd77d6b4a4985b51d/transformed/jetified-ui-common-2.5.0/res" />
       <root url="jar://$USER_HOME$/.gradle/caches/transforms-3/dbc9708ce1e1284bd77d6b4a4985b51d/transformed/jetified-ui-common-2.5.0/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC>

@@ -68,3 +68,11 @@ MIT
 ---
 
 Made with [create-react-native-library](https://github.com/callstack/react-native-builder-bob)
+
+## Build
+
+---
+
+To build, it is necessary to run .\gradlew clean & .\gradlew build in the android folder.
+Afterwards, run "npx bob build" in the root directory. 
+After that, just publish the app.

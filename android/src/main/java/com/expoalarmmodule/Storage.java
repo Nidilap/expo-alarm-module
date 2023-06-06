@@ -2,6 +2,7 @@ package com.expoalarmmodule;
 
 import android.content.Context;
 import android.content.SharedPreferences;
+import android.os.Build;
 
 import com.expoalarmmodule.R;
 import com.google.gson.Gson;
@@ -30,7 +31,9 @@ class Storage {
         Map<String, ?> keyMap = preferences.getAll();
         for (Map.Entry<String, ?> entry : keyMap.entrySet()) {
             if (AlarmDates.isDatesId(entry.getKey())) continue;
-            alarms.add(Alarm.fromJson((String)entry.getValue()));
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                alarms.add(Alarm.fromJson((String)entry.getValue()));
+            }
         }
         return alarms.toArray(new Alarm[0]);
     }
@@ -39,7 +42,11 @@ class Storage {
         SharedPreferences preferences = getSharedPreferences(context);
         String preferenceUid = preferences.getString(alarmUid, null);
         if(preferenceUid != null) {
-          return Alarm.fromJson(preferenceUid);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+                return Alarm.fromJson(preferenceUid);
+            } else {
+                return null;
+            }
         } else {
           return null;
         }

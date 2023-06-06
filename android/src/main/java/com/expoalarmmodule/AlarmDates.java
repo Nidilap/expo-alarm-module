@@ -8,6 +8,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import static com.expoalarmmodule.GsonUtil.createSerialize;
+
 public class AlarmDates {
 
     private static final String postfix = "_DATES";
@@ -89,11 +91,11 @@ public class AlarmDates {
     }
 
     public static AlarmDates fromJson (String json) {
-        return new Gson().fromJson(json, AlarmDates.class);
+        return createSerialize().fromJson(json, AlarmDates.class);
     }
 
     public static String toJson (AlarmDates dates) {
-        return new Gson().toJson(dates);
+        return createSerialize().toJson(dates);
     }
 
     private static int randomId () {
