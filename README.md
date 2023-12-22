@@ -1,6 +1,6 @@
 # expo-alarm-module
 Alarm library to use with expo bare workflow.
-Tested in versions 0.64 to 0.68 of RN.
+Tested in versions 0.64 to 0.72 of RN.
 ## Installation
 
 ### NPM
