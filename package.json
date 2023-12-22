@@ -1,6 +1,6 @@
 {
   "name": "expo-alarm-module",
-  "version": "1.0.11",
+  "version": "1.1.0",
   "description": "Provides an alarm module for expo bare workflow (tested with version 0.64 to 0.72 of RN). Currently, only works for android.",
   "main": "lib/commonjs/index.js",
   "module": "lib/module/index.js",
@@ -58,6 +58,7 @@
     "eslint": "^8.4.1",
     "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-prettier": "^4.0.0",
+    "expo-module-scripts": "^3.1.0",
     "jest": "^28.1.1",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",

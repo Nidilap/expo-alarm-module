@@ -28,7 +28,6 @@ async function scheduleAlarm(alarm: Alarm) {
 	}
 
 	await ExpoAlarmModule.set(alarm.toAndroid());
-	console.log('scheduling alarm: ', JSON.stringify(alarm))
 }
 
 async function enableAlarm(uid: number) {
