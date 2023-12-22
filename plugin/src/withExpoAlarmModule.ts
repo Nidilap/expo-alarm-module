@@ -1,4 +1,3 @@
-import { getMainActivityOrThrow } from '@expo/config-plugins/build/android/Manifest';
 import type { ExpoConfig } from '@expo/config-types';
 import {
   withPlugins,
@@ -18,7 +17,7 @@ type ConfigPluginProps = {};
 //   return config;
 // }
 
-function withExpoAlarmModuleAndroid(config: ExpoConfig, data: ConfigPluginProps) {
+function withExpoAlarmModuleAndroid(config: ExpoConfig) {
 
   
   config = AndroidConfig.Permissions.withPermissions(config, [
@@ -40,8 +39,6 @@ function withExpoAlarmModuleAndroid(config: ExpoConfig, data: ConfigPluginProps)
     //   ],
     //   config.modResults
     // );
-
-   
 
     return config;
   });

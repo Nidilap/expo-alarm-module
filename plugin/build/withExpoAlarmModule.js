@@ -8,7 +8,7 @@ const config_plugins_1 = require("@expo/config-plugins");
 //   config.ios.infoPlist.ExpoLocalization_supportsRTL = config.extra?.supportsRTL || false;
 //   return config;
 // }
-function withExpoAlarmModuleAndroid(config, data) {
+function withExpoAlarmModuleAndroid(config) {
     config = config_plugins_1.AndroidConfig.Permissions.withPermissions(config, [
         'android.permission.SCHEDULE_EXACT_ALARM',
         'android.permission.USE_EXACT_ALARM',
