@@ -1,11 +1,5 @@
 import type { ExpoConfig } from '@expo/config-types';
-import {
-  withPlugins,
-  withStringsXml,
-  AndroidConfig
-} from '@expo/config-plugins';
-
-
+import { withPlugins, withStringsXml, AndroidConfig } from '@expo/config-plugins';
 
 type ConfigPluginProps = {};
 
@@ -18,18 +12,16 @@ type ConfigPluginProps = {};
 // }
 
 function withExpoAlarmModuleAndroid(config: ExpoConfig) {
-
-  
   config = AndroidConfig.Permissions.withPermissions(config, [
     'android.permission.SCHEDULE_EXACT_ALARM',
     'android.permission.USE_EXACT_ALARM',
     'android.permission.VIBRATE',
     'android.permission.RECEIVE_BOOT_COMPLETED',
     'android.permission.FOREGROUND_SERVICE',
-    'android.permission.WAKE_LOCK'
+    'android.permission.WAKE_LOCK',
   ]);
 
-  return withStringsXml(config, (config) => {
+  return withStringsXml(config, (config: any) => {
     // config.modResults = AndroidConfig.Strings.setStringItem(
     //   [
     //     {
@@ -44,14 +36,8 @@ function withExpoAlarmModuleAndroid(config: ExpoConfig) {
   });
 }
 
-function withExpoAlarmModule(
-  config: ExpoConfig,
-  data: ConfigPluginProps = {}
-) {
-  return withPlugins(config, [
-    [withExpoAlarmModuleAndroid, data],
-  ]);
+function withExpoAlarmModule(config: ExpoConfig, data: ConfigPluginProps = {}) {
+  return withPlugins(config, [[withExpoAlarmModuleAndroid, data]]);
 }
 
 export default withExpoAlarmModule;
-

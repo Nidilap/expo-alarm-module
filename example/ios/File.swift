@@ -1,6 +1,6 @@
 //
 //  File.swift
-//  AlarmTestNidilapExample
+//  ExpoAlarmModuleExample
 //
 
 import Foundation

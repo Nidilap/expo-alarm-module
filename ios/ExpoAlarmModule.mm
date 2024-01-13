@@ -1,31 +1,14 @@
-#import "ExpoAlarmModule.h"
+#import <React/RCTBridgeModule.h>
 
-#ifdef RCT_NEW_ARCH_ENABLED
-#import "RNExpoAlarmModuleSpec.h"
-#endif
+@interface RCT_EXTERN_MODULE(ExpoAlarmModule, NSObject)
 
-@implementation ExpoAlarmModule
-RCT_EXPORT_MODULE()
-
-// Example method
-// See // https://reactnative.dev/docs/native-modules-ios
-RCT_REMAP_METHOD(multiply,
-                 multiplyWithA:(double)a withB:(double)b
+RCT_EXTERN_METHOD(multiply:(float)a withB:(float)b
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
-{
-  NSNumber *result = @(a * b);
 
-  resolve(result);
-}
-
-// Don't compile this code when we build for the old architecture.
-#ifdef RCT_NEW_ARCH_ENABLED
-- (std::shared_ptr<facebook::react::TurboModule>)getTurboModule:
-    (const facebook::react::ObjCTurboModule::InitParams &)params
++ (BOOL)requiresMainQueueSetup
 {
-    return std::make_shared<facebook::react::NativeExpoAlarmModuleSpecJSI>(params);
+  return NO;
 }
-#endif
 
 @end

@@ -1,13 +1,6 @@
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-  package="com.example.expoalarmmodule">
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <uses-permission android:name="android.permission.SCHEDULE_EXACT_ALARM" />
-    <uses-permission android:name="android.permission.USE_EXACT_ALARM" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.VIBRATE" />
-    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
       android:name=".MainApplication"
@@ -28,24 +21,5 @@
             <category android:name="android.intent.category.LAUNCHER" />
         </intent-filter>
       </activity>
-
-      <receiver
-            android:name="com.expoalarmmodule.receivers.AlarmReceiver"
-            android:enabled="true"
-            android:exported="true"
-            />
-        <receiver
-          android:name="com.expoalarmmodule.receivers.BootReceiver"
-          android:exported="true"
-        >
-          <intent-filter
-            android:priority="999"
-          >
-              <action android:name="android.intent.action.BOOT_COMPLETED" />
-          </intent-filter>
-        </receiver>
-      <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-
-      <service android:name="com.expoalarmmodule.AlarmService" />
     </application>
 </manifest>
