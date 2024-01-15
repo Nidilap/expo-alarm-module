@@ -80,5 +80,9 @@ async function getAlarmState() {
   return ExpoAlarmModule.getState();
 }
 
+function multiply(a: number, b: number): Promise<number> {
+  return ExpoAlarmModule.multiply(a, b);
+}
+
 export default Alarm;
-export { scheduleAlarm, enableAlarm, disableAlarm, stopAlarm, snoozeAlarm, removeAlarm, updateAlarm, removeAllAlarms, getAllAlarms, getAlarm, getAlarmState };
+export { scheduleAlarm, enableAlarm, disableAlarm, stopAlarm, snoozeAlarm, removeAlarm, updateAlarm, removeAllAlarms, getAllAlarms, getAlarm, getAlarmState, multiply };
