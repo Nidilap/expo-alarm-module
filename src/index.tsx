@@ -27,7 +27,11 @@ async function scheduleAlarm(alarm: Alarm) {
     alarm.day = alarm.day.toJSON();
   }
 
-  await ExpoAlarmModule.set(alarm.toAndroid());
+  if (Platform.OS == 'ios') {
+    await ExpoAlarmModule.set(124124124);
+  } else if (Platform.OS == 'android') {
+    await ExpoAlarmModule.set(alarm.toAndroid());
+  }
 }
 
 async function enableAlarm(uid: number) {
