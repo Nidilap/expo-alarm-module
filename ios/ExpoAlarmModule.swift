@@ -5,7 +5,10 @@ import AVFoundation
 class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayerDelegate  {
     var isEditMode = false
     private var audioPlayer: AVAudioPlayer?
+    
     private let notificationScheduler: NotificationSchedulerDelegate = NotificationScheduler()
+    private let alarms: Alarms = Store.shared.alarms
+    private let manager: Manager = Manager();
     
     public override init() {
         super.init()
@@ -40,6 +43,22 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
 
     @objc(set:withResolver:withRejecter:)
     func set(dateEpochMS: NSNumber, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+        let currentDate = Date()
+        let date = currentDate.addingTimeInterval(60)
+        let alarm = Alarm(
+            uuid: UUID(),
+            date: date,
+            enabled: true,
+            snoozeEnabled: false,
+            repeatWeekdays: [],
+            mediaID: "",
+            mediaLabel: "bell",
+            label: "tESTE"
+        )
+
+        manager.schedule(alarm);
+    
+
         resolve("")
     }  
 
@@ -135,6 +154,9 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
             },
             nil)
         
+        if let files = try? FileManager.default.contentsOfDirectory(atPath: Bundle.main.bundlePath) {
+            print(files)
+        }
         guard let filePath = Bundle.main.path(forResource: soundName, ofType: "mp3") else {fatalError()}
         let url = URL(fileURLWithPath: filePath)
         

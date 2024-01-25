@@ -1,14 +1,10 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text } from 'react-native';
-import { multiply, scheduleAlarm } from 'expo-alarm-module';
+import { StyleSheet, View, Text, Button } from 'react-native';
+import { scheduleAlarm } from 'expo-alarm-module';
 
 export default function App() {
-  React.useEffect(() => {
-    multiply(3, 8).then((result: number) => {
-      console.log('Result:', result);
-    });
-
+  const criarAlarme = () => {
     var newDate = new Date();
     newDate.setSeconds(newDate.getSeconds() + 10);
 
@@ -25,11 +21,12 @@ export default function App() {
     } as any).then((result: any) => {
       console.log('Alarm created: ', result);
     });
-  }, []);
+  };
 
   return (
     <View style={styles.container}>
       <Text>Empty</Text>
+      <Button title="Criar Alarme" onPress={criarAlarme} />
     </View>
   );
 }
