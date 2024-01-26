@@ -1,6 +1,6 @@
 {
   "name": "expo-alarm-module",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Provides an alarm module for expo bare workflow (tested with version 0.64 to 0.72 of RN). Currently, only works for android.",
   "main": "lib/commonjs/index",
   "module": "lib/module/index",
