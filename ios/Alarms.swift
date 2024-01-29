@@ -19,7 +19,7 @@ class Alarms: Codable {
     }
     
     func getAlarm(ByUUIDStr uuidString: String) -> Alarm?{
-        return alarms.first(where: {$0.uuid.uuidString == uuidString})
+        return alarms.first(where: {$0.uid == uuidString})
     }
     
     func encode(to encoder: Encoder) throws {
@@ -31,7 +31,7 @@ class Alarms: Codable {
     
     func add(_ alarm: Alarm) {
         alarms.append(alarm)
-        let newIndex = alarms.firstIndex { $0.uuid == alarm.uuid }!
+        let newIndex = alarms.firstIndex { $0.uid == alarm.uid }!
         Store.shared.save(self, notifying: alarm, userInfo: [
             Alarm.changeReasonKey: Alarm.added,
             Alarm.newValueKey: newIndex
@@ -39,13 +39,13 @@ class Alarms: Codable {
     }
     
     func remove(_ alarm: Alarm) {
-        guard let index = alarms.firstIndex(where: { $0.uuid == alarm.uuid }) else { return }
+        guard let index = alarms.firstIndex(where: { $0.uid == alarm.uid }) else { return }
         remove(at: index)
     }
     
     func remove(at index: Int) {
         let alarm = alarms[index]
-        let uuidStr = alarm.uuid.uuidString
+        let uuidStr = alarm.uid
         alarms.remove(at: index)
         Store.shared.save(self, notifying: nil, userInfo: [
             Alarm.changeReasonKey: Alarm.removed,
@@ -55,7 +55,7 @@ class Alarms: Codable {
     }
     
     func update(_ alarm: Alarm) {
-        guard let index = alarms.firstIndex(where: { $0.uuid == alarm.uuid }) else { return }
+        guard let index = alarms.firstIndex(where: { $0.uid == alarm.uid }) else { return }
         Store.shared.save(self, notifying: alarm, userInfo: [
             Alarm.changeReasonKey: Alarm.updated,
             Alarm.oldValueKey: index,
@@ -68,7 +68,7 @@ class Alarms: Codable {
     }
     
     var uuids: Set<String> {
-        return Set(alarms.map { $0.uuid.uuidString })
+        return Set(alarms.map { $0.uid })
     }
     
     subscript(index: Int) -> Alarm {

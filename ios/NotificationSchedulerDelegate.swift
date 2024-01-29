@@ -4,10 +4,10 @@ import UIKit
 protocol NotificationSchedulerDelegate {
     func requestAuthorization()
     func registerNotificationCategories()
-    func setNotification(date: Date, ringtoneName: String, repeatWeekdays: [Int], snoozeEnabled: Bool, onSnooze: Bool, uuid: String)
-    func setNotificationForSnooze(ringtoneName: String, snoozeMinute: Int, uuid: String)
-    func cancelNotification(ByUUIDStr uuid: String)
-    func updateNotification(ByUUIDStr uuid: String, date: Date, ringtoneName: String, repeatWeekdays: [Int], snoonzeEnabled: Bool)
+    func setNotification(date: Date, ringtoneName: String, snoozeEnabled: Bool, onSnooze: Bool, uid: String)
+    func setNotificationForSnooze(ringtoneName: String, snoozeMinute: Int, uid: String)
+    func cancelNotification(ByUUIDStr uid: String)
+    func updateNotification(ByUUIDStr uid: String, date: Date, ringtoneName: String, snoonzeEnabled: Bool)
     func syncAlarmStateWithNotification()
 }
 

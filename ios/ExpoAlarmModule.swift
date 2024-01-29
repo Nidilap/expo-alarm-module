@@ -42,21 +42,10 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
     }
 
     @objc(set:withResolver:withRejecter:)
-    func set(dateEpochMS: NSNumber, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-        let currentDate = Date()
-        let date = currentDate.addingTimeInterval(60)
-        let alarm = Alarm(
-            uuid: UUID(),
-            date: date,
-            enabled: true,
-            snoozeEnabled: false,
-            repeatWeekdays: [],
-            mediaID: "",
-            mediaLabel: "bell",
-            label: "tESTE"
-        )
+    func set(alarm: NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+        let alarmToUse = Alarm(dictionary: alarm as! NSMutableDictionary);
 
-        manager.schedule(alarm);
+        manager.schedule(alarmToUse);
     
 
         resolve("")
@@ -72,7 +61,7 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
         guard
             let snoozeEnabled = userInfo["snooze"] as? Bool,
             let soundName = userInfo["soundName"] as? String,
-            let uuidStr = userInfo["uuid"] as? String
+            let uidStr = userInfo["uid"] as? String
         else {return}
         
         playSound(soundName)
@@ -81,7 +70,7 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
             let snoozeOption = UIAlertAction(title: "Snooze", style: .default) {
                 (action:UIAlertAction) in
                 self.audioPlayer?.stop()
-                self.notificationScheduler.setNotificationForSnooze(ringtoneName: soundName, snoozeMinute: 9, uuid: uuidStr)
+                self.notificationScheduler.setNotificationForSnooze(ringtoneName: soundName, snoozeMinute: 9, uid: uidStr)
             }
             alertController.addAction(snoozeOption)
         }
@@ -91,12 +80,6 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
             self.audioPlayer?.stop()
             AudioServicesRemoveSystemSoundCompletion(kSystemSoundID_Vibrate)
             let alarms = Store.shared.alarms
-            if let alarm = alarms.getAlarm(ByUUIDStr: uuidStr) {
-                if alarm.repeatWeekdays.isEmpty {
-                    alarm.enabled = false
-                    alarms.update(alarm)
-                }
-            }
         }
         
         alertController.addAction(stopOption)
@@ -117,23 +100,17 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
         let userInfo = response.notification.request.content.userInfo
         guard
             let soundName = userInfo["soundName"] as? String,
-            let uuid = userInfo["uuid"] as? String
+            let uid = userInfo["uid"] as? String
         else {return}
         
         switch response.actionIdentifier {
         case Identifier.snoozeActionIdentifier:
             // notification fired when app in background, snooze button clicked
-            notificationScheduler.setNotificationForSnooze(ringtoneName: soundName, snoozeMinute: 9, uuid: uuid)
+            notificationScheduler.setNotificationForSnooze(ringtoneName: soundName, snoozeMinute: 9, uid: uid)
             break
         case Identifier.stopActionIdentifier:
             // notification fired when app in background, ok button clicked
             let alarms = Store.shared.alarms
-            if let alarm = alarms.getAlarm(ByUUIDStr: uuid) {
-                if alarm.repeatWeekdays.isEmpty {
-                    alarm.enabled = false
-                    alarms.update(alarm)
-                }
-            }
             break
         default:
             break
@@ -154,9 +131,6 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
             },
             nil)
         
-        if let files = try? FileManager.default.contentsOfDirectory(atPath: Bundle.main.bundlePath) {
-            print(files)
-        }
         guard let filePath = Bundle.main.path(forResource: soundName, ofType: "mp3") else {fatalError()}
         let url = URL(fileURLWithPath: filePath)
         

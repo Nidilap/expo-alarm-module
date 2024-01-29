@@ -7,7 +7,7 @@ RCT_EXTERN_METHOD(multiply:(float)a withB:(float)b
                  withRejecter:(RCTPromiseRejectBlock)reject)
 
 
-RCT_EXTERN_METHOD(set:(nonnull NSNumber)dateEpochMS
+RCT_EXTERN_METHOD(set:(NSDictionary)alarm
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 

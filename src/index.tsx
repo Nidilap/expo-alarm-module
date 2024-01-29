@@ -28,7 +28,7 @@ async function scheduleAlarm(alarm: Alarm) {
   }
 
   if (Platform.OS == 'ios') {
-    await ExpoAlarmModule.set(124124124);
+    await ExpoAlarmModule.set(alarm);
   } else if (Platform.OS == 'android') {
     await ExpoAlarmModule.set(alarm.toAndroid());
   }

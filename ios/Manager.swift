@@ -6,7 +6,7 @@ class Manager {
     
     func schedule(_ alarm: Alarm) {
         // Creates the notification (the alarm).
-        scheduler.setNotification(date: alarm.date, ringtoneName: alarm.mediaLabel, repeatWeekdays: alarm.repeatWeekdays, snoozeEnabled: alarm.snoozeEnabled, onSnooze: false, uuid: alarm.uuid.uuidString)
+        scheduler.setNotification(date: alarm.date, ringtoneName: "bell", snoozeEnabled: alarm.snoozeEnabled, onSnooze: false, uid: alarm.uid)
 
         // Stores the alarm in the Store for rescheduling or removing later.
         alarms.add(alarm); 

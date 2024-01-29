@@ -57,14 +57,13 @@ import { View, Text, Button } from 'react-native';
 import AlarmModule, { removeAlarm, scheduleAlarm, stopAlarm } from "expo-alarm-module";
 
 const App = () => {
-    const alarmIn10 = () => {
+    const alarmIn60 = () => {
         var newDate = new Date();
-        newDate.setSeconds(newDate.getSeconds() + 10);
+        newDate.setSeconds(newDate.getSeconds() + 60);
 
         scheduleAlarm(
         {
             uid: "alarm1",
-            enabled: true,
             day: newDate,
             title: "Title of alarm",
             description: "Alarm Description",        
@@ -76,11 +75,8 @@ const App = () => {
 
     };
 
-    /* Create a new alarm 10 seconds after the current date.*/
+    /* Create a new alarm 60 seconds after the current date.*/
     const onStopAlarmButton = () => {
-        var newDate = new Date();
-        newDate.setSeconds(newDate.getSeconds() + 10);
-
         //@ts-ignore
         stopAlarm("alarm1");
         
@@ -92,7 +88,7 @@ const App = () => {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Text>React Native Alarm Test</Text>
-            <Button title="Alarm in 10 seconds" onPress={alarmIn10} />
+            <Button title="Alarm in 60 seconds" onPress={alarmIn60} />
             <Button title="Stop Alarm" onPress={onStopAlarmButton} />
         </View>
     );

@@ -6318,6 +6318,7 @@ __metadata:
     pod-install: ^0.1.0
     react: 18.2.0
     react-native: 0.73.2
+    react-native-uuid: ^2.0.1
   languageName: unknown
   linkType: soft
 

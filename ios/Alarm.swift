@@ -1,65 +1,75 @@
 import Foundation
 
 class Alarm: Codable {
-    let uuid: UUID
+    let uid: String
     var date: Date
-    var enabled: Bool
+    var active: Bool
     var snoozeEnabled: Bool
-    var repeatWeekdays: [Int]
-    var mediaID: String
-    var mediaLabel: String
-    var label: String
+    var title: String
+    var description: String
     
     convenience init() {
-        self.init(uuid: UUID(), date: Date(), enabled: true, snoozeEnabled: false, repeatWeekdays: [], mediaID: "", mediaLabel: "bell", label: "Alarm")
+        self.init(uid: "", date: Date(), active: true, snoozeEnabled: false, title: "Alarm", description: "")
     }
     
-    init(uuid: UUID, date: Date, enabled: Bool, snoozeEnabled: Bool, repeatWeekdays: [Int], mediaID: String, mediaLabel: String, label: String) {
-        self.uuid = uuid
+    init(uid: String, date: Date, active: Bool, snoozeEnabled: Bool, title: String, description: String) {
+        self.uid = uid
         self.date = date
-        self.enabled = enabled
+        self.active = active
         self.snoozeEnabled = snoozeEnabled
-        self.repeatWeekdays = repeatWeekdays
-        self.mediaID = mediaID
-        self.mediaLabel = mediaLabel
-        self.label = label
+        self.title = title
+        self.description = description
     }
-    
+    	
+    init(dictionary: NSMutableDictionary) {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        
+        self.uid = dictionary["uid"] as? String ?? "";
+        self.active = dictionary["active"] as? Bool ?? false;
+        self.snoozeEnabled = dictionary["snoozeEnabled"] as? Bool ?? false
+        self.title = dictionary["title"] as? String ?? ""
+        self.description = dictionary["description"] as? String ?? ""
+        
+        // Converts the Date
+        if let dateString = dictionary["day"] as? String,
+           let date = dateFormatter.date(from: dateString) {
+            self.date = date
+        } else {
+            // Handle the case where the date conversion fails or provide a default value
+            self.date = Date()
+        }
+    }
+    	
     enum CodingKeys: CodingKey {
-        case uuid
+        case uid
         case date
-        case enabled
+        case active
         case snoozeEnabled
-        case repeatWeekdays
-        case mediaID
-        case mediaLabel
-        case label
+        case title
+        case description
     }
     
     required init(from decoder: Decoder) throws {
         let container: KeyedDecodingContainer<Alarm.CodingKeys> = try decoder.container(keyedBy: Alarm.CodingKeys.self)
         
-        self.uuid = try container.decode(UUID.self, forKey: Alarm.CodingKeys.uuid)
+        self.uid = try container.decode(String.self, forKey: Alarm.CodingKeys.uid)
         self.date = try container.decode(Date.self, forKey: Alarm.CodingKeys.date)
-        self.enabled = try container.decode(Bool.self, forKey: Alarm.CodingKeys.enabled)
+        self.active = try container.decode(Bool.self, forKey: Alarm.CodingKeys.active)
         self.snoozeEnabled = try container.decode(Bool.self, forKey: Alarm.CodingKeys.snoozeEnabled)
-        self.repeatWeekdays = try container.decode([Int].self, forKey: Alarm.CodingKeys.repeatWeekdays)
-        self.mediaID = try container.decode(String.self, forKey: Alarm.CodingKeys.mediaID)
-        self.mediaLabel = try container.decode(String.self, forKey: Alarm.CodingKeys.mediaLabel)
-        self.label = try container.decode(String.self, forKey: Alarm.CodingKeys.label)
+        self.title = try container.decode(String.self, forKey: Alarm.CodingKeys.title)
+        self.description = try container.decode(String.self, forKey: Alarm.CodingKeys.description)
     }
     
     func encode(to encoder: Encoder) throws {
         var container: KeyedEncodingContainer<Alarm.CodingKeys> = encoder.container(keyedBy: Alarm.CodingKeys.self)
         
-        try container.encode(self.uuid, forKey: Alarm.CodingKeys.uuid)
+        try container.encode(self.uid, forKey: Alarm.CodingKeys.uid)
         try container.encode(self.date, forKey: Alarm.CodingKeys.date)
-        try container.encode(self.enabled, forKey: Alarm.CodingKeys.enabled)
+        try container.encode(self.active, forKey: Alarm.CodingKeys.active)
         try container.encode(self.snoozeEnabled, forKey: Alarm.CodingKeys.snoozeEnabled)
-        try container.encode(self.repeatWeekdays, forKey: Alarm.CodingKeys.repeatWeekdays)
-        try container.encode(self.mediaID, forKey: Alarm.CodingKeys.mediaID)
-        try container.encode(self.mediaLabel, forKey: Alarm.CodingKeys.mediaLabel)
-        try container.encode(self.label, forKey: Alarm.CodingKeys.label)
+        try container.encode(self.title, forKey: Alarm.CodingKeys.title)
+        try container.encode(self.description, forKey: Alarm.CodingKeys.description)
     }
 }
 

@@ -48,14 +48,14 @@ class NotificationScheduler : NotificationSchedulerDelegate
             requests in
             print(requests)
             let alarms = Store.shared.alarms
-            let uuidNotificationsSet = Set(requests.map({$0.content.userInfo["uuid"] as! String}))
+            let uuidNotificationsSet = Set(requests.map({$0.content.userInfo["uid"] as! String}))
             let uuidAlarmsSet = alarms.uuids
             let uuidDeltaSet = uuidAlarmsSet.subtracting(uuidNotificationsSet)
-            print(uuidDeltaSet)
-            for uuid in uuidDeltaSet {
-                if let alarm = alarms.getAlarm(ByUUIDStr: uuid) {
-                    if alarm.enabled {
-                        alarm.enabled = false
+            
+            for uid in uuidDeltaSet {
+                if let alarm = alarms.getAlarm(ByUUIDStr: uid) {
+                    if alarm.active {
+                        alarm.active = false
                         // since this method will cause UI change, make sure run on main thread
                         DispatchQueue.main.async {
                             alarms.update(alarm)
@@ -66,57 +66,22 @@ class NotificationScheduler : NotificationSchedulerDelegate
         })
     }
     
-    private func getNotificationDates(baseDate date: Date, onWeekdaysForNotify weekdays:[Int]) -> [Date]
+    private func getNotificationDates(baseDate date: Date) -> [Date]
     {
         var notificationDates: [Date] = [Date]()
         let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
         let now = Date()
         let flags: NSCalendar.Unit = [NSCalendar.Unit.weekday, NSCalendar.Unit.weekdayOrdinal, NSCalendar.Unit.day]
         let dateComponents = (calendar as NSCalendar).components(flags, from: date)
-        let weekday = dateComponents.weekday ?? 0
         
-        //no repeat
-        if weekdays.isEmpty {
-            //scheduling date is eariler than current date
-            if date < now {
-                //plus one day, otherwise the notification will be fired righton
-                notificationDates.append((calendar as NSCalendar).date(byAdding: NSCalendar.Unit.day, value: 1, to: date, options:.matchStrictly)!)
-            } else {
-                notificationDates.append(date)
-            }
+        //scheduling date is eariler than current date
+        if date < now {
+            //plus one day, otherwise the notification will be fired righton
+            notificationDates.append((calendar as NSCalendar).date(byAdding: NSCalendar.Unit.day, value: 1, to: date, options:.matchStrictly)!)
+        } else {
+            notificationDates.append(date)
         }
-        else {
-            let daysInWeek = 7
-            for wdIndex in weekdays {
-                // weekdays index start from 1 (Sunday)
-                let wd = wdIndex + 1
-                var wdDate: Date?
-                //schedule on next week
-                if compare(weekday: wd, with: weekday) == .before {
-                    wdDate = (calendar as NSCalendar).date(byAdding: NSCalendar.Unit.day, value: wd + daysInWeek - weekday, to: date, options:.matchStrictly)
-                }
-                //schedule on today or next week
-                else if compare(weekday: wd, with: weekday) == .same {
-                    //scheduling date is eariler than current date, then schedule on next week
-                    if date.compare(now) == .orderedAscending {
-                        wdDate = (calendar as NSCalendar).date(byAdding: NSCalendar.Unit.day, value: daysInWeek, to: date, options:.matchStrictly)
-                    }
-                    else {
-                        wdDate = date
-                    }
-                }
-                //schedule on next days of this week
-                else {
-                    wdDate = (calendar as NSCalendar).date(byAdding: NSCalendar.Unit.day, value: wd - weekday, to: date, options:.matchStrictly)
-                }
-                
-                //fix second component to 0
-                if let date = wdDate {
-                    let correctedDate = NotificationScheduler.correctSecondComponent(date: date, calendar: calendar)
-                    notificationDates.append(correctedDate)
-                }
-            }
-        }
+        
         return notificationDates
     }
     
@@ -126,8 +91,8 @@ class NotificationScheduler : NotificationSchedulerDelegate
         return d
     }
     
-    func setNotification(date: Date, ringtoneName: String, repeatWeekdays: [Int], snoozeEnabled: Bool, onSnooze: Bool, uuid: String) {
-        let datesForNotification = getNotificationDates(baseDate: date, onWeekdaysForNotify: repeatWeekdays)
+    func setNotification(date: Date, ringtoneName: String, snoozeEnabled: Bool, onSnooze: Bool, uid: String) {
+        let datesForNotification = getNotificationDates(baseDate: date)
         
         for d in datesForNotification {
             let notificationContent = UNMutableNotificationContent()
@@ -136,14 +101,12 @@ class NotificationScheduler : NotificationSchedulerDelegate
             notificationContent.categoryIdentifier = snoozeEnabled ? Identifier.snoozeAlarmCategoryIndentifier
                                                                    : Identifier.alarmCategoryIndentifier
             notificationContent.sound = UNNotificationSound(named: UNNotificationSoundName(ringtoneName + ".mp3"))
-            notificationContent.userInfo = ["snooze" : snoozeEnabled, "uuid": uuid, "soundName": ringtoneName]
-            //repeat weekly if repeat weekdays are selected
-            //no repeat with snooze notification
-            let repeats = !repeatWeekdays.isEmpty && !onSnooze
+            notificationContent.userInfo = ["snooze" : snoozeEnabled, "uid": uid, "soundName": ringtoneName]
+            
             // make dataComponents only contain [weekday, hour, minute] component to make it repeat weakly
             let dateComponents = Calendar.current.dateComponents([.weekday,.hour,.minute], from: d)
-            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: repeats)
-            let request = UNNotificationRequest(identifier: uuid,
+            let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
+            let request = UNNotificationRequest(identifier: uid,
                                                 content: notificationContent,
                                                 trigger: trigger)
 
@@ -156,20 +119,20 @@ class NotificationScheduler : NotificationSchedulerDelegate
         }
     }
     
-    func setNotificationForSnooze(ringtoneName: String, snoozeMinute: Int, uuid: String) {
+    func setNotificationForSnooze(ringtoneName: String, snoozeMinute: Int, uid: String) {
         let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
         let now = Date()
         let snoozeDate = (calendar as NSCalendar).date(byAdding: NSCalendar.Unit.minute, value: snoozeMinute, to: now, options:.matchStrictly)!
-        setNotification(date: snoozeDate, ringtoneName: ringtoneName, repeatWeekdays: [], snoozeEnabled: true, onSnooze: true, uuid: uuid)
+        setNotification(date: snoozeDate, ringtoneName: ringtoneName, snoozeEnabled: true, onSnooze: true, uid: uid)
     }
     
-    func cancelNotification(ByUUIDStr uuid: String) {
-        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [uuid])
+    func cancelNotification(ByUUIDStr uid: String) {
+        UNUserNotificationCenter.current().removePendingNotificationRequests(withIdentifiers: [uid])
     }
     
-    func updateNotification(ByUUIDStr uuid: String, date: Date, ringtoneName: String, repeatWeekdays: [Int], snoonzeEnabled: Bool) {
-        cancelNotification(ByUUIDStr: uuid)
-        setNotification(date: date, ringtoneName: ringtoneName, repeatWeekdays: repeatWeekdays, snoozeEnabled: snoonzeEnabled, onSnooze: false, uuid: uuid)
+    func updateNotification(ByUUIDStr uid: String, date: Date, ringtoneName: String, snoonzeEnabled: Bool) {
+        cancelNotification(ByUUIDStr: uid)
+        setNotification(date: date, ringtoneName: ringtoneName, snoozeEnabled: snoonzeEnabled, onSnooze: false, uid: uid)
     }
     
     enum weekdaysComparisonResult {

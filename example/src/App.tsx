@@ -2,15 +2,15 @@ import * as React from 'react';
 
 import { StyleSheet, View, Text, Button } from 'react-native';
 import { scheduleAlarm } from 'expo-alarm-module';
+import uuid from 'react-native-uuid';
 
 export default function App() {
   const criarAlarme = () => {
     var newDate = new Date();
-    newDate.setSeconds(newDate.getSeconds() + 10);
+    newDate.setSeconds(newDate.getSeconds() + 60);
 
-    console.log('Setando o alarme1');
     scheduleAlarm({
-      uid: 'alarm1',
+      uid: uuid.v4(),
       enabled: true,
       day: newDate,
       title: 'Title of alarm',
