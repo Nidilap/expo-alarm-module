@@ -1,7 +1,7 @@
 import * as React from 'react';
 
 import { StyleSheet, View, Text, Button } from 'react-native';
-import { scheduleAlarm } from 'expo-alarm-module';
+import { scheduleAlarm, stopAlarm } from 'expo-alarm-module';
 import uuid from 'react-native-uuid';
 
 export default function App() {
@@ -26,7 +26,8 @@ export default function App() {
   return (
     <View style={styles.container}>
       <Text>Empty</Text>
-      <Button title="Criar Alarme" onPress={criarAlarme} />
+      <Button title="Create Alarm" onPress={criarAlarme} />
+      <Button title="Stop Alarm" onPress={stopAlarm} />
     </View>
   );
 }

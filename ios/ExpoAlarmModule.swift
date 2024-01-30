@@ -4,7 +4,7 @@ import AVFoundation
 @objc(ExpoAlarmModule)
 class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayerDelegate  {
     var isEditMode = false
-    private var audioPlayer: AVAudioPlayer?
+    public static var audioPlayer: AVAudioPlayer?
     
     private let notificationScheduler: NotificationSchedulerDelegate = NotificationScheduler()
     private let alarms: Alarms = Store.shared.alarms
@@ -49,7 +49,13 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
     
 
         resolve("")
-    }  
+    }
+
+    @objc(stop)
+    func stop() -> Void {
+        manager.stop();
+        
+    }
 
 
     // The method will be called on the delegate only if the application is in the foreground. If the method is not implemented or the handler is not called in a timely manner then the notification will not be presented. The application can choose to have the notification presented as a sound, badge, alert and/or in the notification list. This decision should be based on whether the information in the notification is otherwise visible to the user.
@@ -69,7 +75,7 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
         if snoozeEnabled {
             let snoozeOption = UIAlertAction(title: "Snooze", style: .default) {
                 (action:UIAlertAction) in
-                self.audioPlayer?.stop()
+                self.manager.stop()
                 self.notificationScheduler.setNotificationForSnooze(ringtoneName: soundName, snoozeMinute: 9, uid: uidStr)
             }
             alertController.addAction(snoozeOption)
@@ -77,8 +83,7 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
         
         let stopOption = UIAlertAction(title: "OK", style: .default) {
             (action:UIAlertAction) in
-            self.audioPlayer?.stop()
-            AudioServicesRemoveSystemSoundCompletion(kSystemSoundID_Vibrate)
+            self.manager.stop()
             let alarms = Store.shared.alarms
         }
         
@@ -135,14 +140,14 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
         let url = URL(fileURLWithPath: filePath)
         
         do {
-            audioPlayer = try AVAudioPlayer(contentsOf: url)
+            ExpoAlarmModule.audioPlayer = try AVAudioPlayer(contentsOf: url)
         } catch let error as NSError {
-            audioPlayer = nil
+            ExpoAlarmModule.audioPlayer = nil
             print("audioPlayer error \(error.localizedDescription)")
             return
         }
         
-        if let player = audioPlayer {
+        if let player = ExpoAlarmModule.audioPlayer {
             player.delegate = self
             player.prepareToPlay()
             //negative number means loop infinity

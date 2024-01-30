@@ -1,4 +1,5 @@
 import Foundation
+import AVFoundation
 
 class Manager {
     private let scheduler: NotificationSchedulerDelegate = NotificationScheduler()
@@ -11,4 +12,10 @@ class Manager {
         // Stores the alarm in the Store for rescheduling or removing later.
         alarms.add(alarm); 
     }
+    
+    func stop() {
+        ExpoAlarmModule.audioPlayer?.stop()
+        AudioServicesRemoveSystemSoundCompletion(kSystemSoundID_Vibrate)
+    }
+    
 }
