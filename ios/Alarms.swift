@@ -38,15 +38,12 @@ class Alarms: Codable {
         ])
     }
     
-    func remove(_ alarm: Alarm) {
-        guard let index = alarms.firstIndex(where: { $0.uid == alarm.uid }) else { return }
-        remove(at: index)
-    }
-    
-    func remove(at index: Int) {
+    func remove(_ uid: String) {
+        guard let index = alarms.firstIndex(where: { $0.uid == uid }) else { return }
+        
         let alarm = alarms[index]
         let uuidStr = alarm.uid
-        alarms.remove(at: index)
+        
         Store.shared.save(self, notifying: nil, userInfo: [
             Alarm.changeReasonKey: Alarm.removed,
             Alarm.oldValueKey: index,

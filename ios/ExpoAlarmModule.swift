@@ -54,7 +54,13 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
     @objc(stop)
     func stop() -> Void {
         manager.stop();
+    }
+
+    @objc(remove:withResolver:withRejecter:)
+    func remove(uid: String, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+        manager.remove(uid)
         
+        resolve("")
     }
 
 

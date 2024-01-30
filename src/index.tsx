@@ -34,11 +34,11 @@ async function scheduleAlarm(alarm: Alarm) {
   }
 }
 
-async function enableAlarm(uid: number) {
+async function enableAlarm(uid: string) {
   await ExpoAlarmModule.enable(uid);
 }
 
-async function disableAlarm(uid: number) {
+async function disableAlarm(uid: string) {
   await ExpoAlarmModule.disable(uid);
 }
 
@@ -50,7 +50,7 @@ async function snoozeAlarm() {
   await ExpoAlarmModule.snooze();
 }
 
-async function removeAlarm(uid: number) {
+async function removeAlarm(uid: string) {
   await ExpoAlarmModule.remove(uid);
 }
 
@@ -75,7 +75,7 @@ async function getAllAlarms() {
   return alarms.map((a: any) => Alarm.fromAndroid(a));
 }
 
-async function getAlarm(uid: number) {
+async function getAlarm(uid: string) {
   const alarm = await ExpoAlarmModule.get(uid);
   return Alarm.fromAndroid(alarm);
 }

@@ -1,33 +1,41 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Text, Button } from 'react-native';
-import { scheduleAlarm, stopAlarm } from 'expo-alarm-module';
+import { StyleSheet, View, Button } from 'react-native';
+import { scheduleAlarm, stopAlarm, removeAlarm } from 'expo-alarm-module';
 import uuid from 'react-native-uuid';
 
 export default function App() {
-  const criarAlarme = () => {
+  const [lastAlarmCreated, setLastAlarmCreated] = React.useState<string>();
+
+  const createAlarm = () => {
     var newDate = new Date();
     newDate.setSeconds(newDate.getSeconds() + 60);
 
+    let uuidToUse: string = uuid.v4() as string;
+    setLastAlarmCreated(uuidToUse);
+
     scheduleAlarm({
-      uid: uuid.v4(),
-      enabled: true,
+      uid: uuidToUse,
       day: newDate,
       title: 'Title of alarm',
       description: 'Alarm Description',
       snoozeInterval: 5,
       repeating: true,
       active: true,
-    } as any).then((result: any) => {
-      console.log('Alarm created: ', result);
-    });
+    } as any);
+  };
+
+  const removeAlarmCheck = () => {
+    if (lastAlarmCreated) {
+      removeAlarm(lastAlarmCreated);
+    }
   };
 
   return (
     <View style={styles.container}>
-      <Text>Empty</Text>
-      <Button title="Create Alarm" onPress={criarAlarme} />
+      <Button title="Create Alarm" onPress={createAlarm} />
       <Button title="Stop Alarm" onPress={stopAlarm} />
+      <Button title="Remove Alarm" onPress={removeAlarmCheck} />
     </View>
   );
 }

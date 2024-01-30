@@ -13,6 +13,10 @@ RCT_EXTERN_METHOD(set:(NSDictionary)alarm
 
 RCT_EXTERN_METHOD(stop)
 
+RCT_EXTERN_METHOD(remove:(NSString)alarmUid
+                 withResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+
 + (BOOL)requiresMainQueueSetup
 {
   return NO;

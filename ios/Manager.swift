@@ -17,5 +17,16 @@ class Manager {
         ExpoAlarmModule.audioPlayer?.stop()
         AudioServicesRemoveSystemSoundCompletion(kSystemSoundID_Vibrate)
     }
+
+    func remove(_ uid: String) {
+        // Stops any sound of alarm that is playing.
+        self.stop()
+        
+        // Cancels the notification
+        scheduler.cancelNotification(ByUUIDStr: uid)
+        
+        // Removes the alarm from the Store.
+        alarms.remove(uid)
+    }
     
 }
