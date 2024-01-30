@@ -1,5 +1,6 @@
 import { NativeModules, Platform } from 'react-native';
 import Alarm from './models/Alarm';
+import { AlarmSettings } from './types/Alarm.types';
 
 const LINKING_ERROR =
   `The package 'expo-alarm-module' doesn't seem to be linked. Make sure: \n\n` +
@@ -18,19 +19,17 @@ const ExpoAlarmModule = NativeModules.ExpoAlarmModule
       }
     );
 
-async function scheduleAlarm(alarm: Alarm) {
-  if (!(alarm instanceof Alarm)) {
-    alarm = new Alarm(alarm);
-  }
+async function scheduleAlarm(alarm: AlarmSettings) {
+  let alarmToUse: Alarm = new Alarm(alarm);
 
-  if (alarm.day instanceof Date) {
-    alarm.day = alarm.day.toJSON();
+  if (alarmToUse.day instanceof Date) {
+    alarmToUse.day = alarmToUse.day.toJSON();
   }
 
   if (Platform.OS == 'ios') {
-    await ExpoAlarmModule.set(alarm);
+    await ExpoAlarmModule.set(alarmToUse);
   } else if (Platform.OS == 'android') {
-    await ExpoAlarmModule.set(alarm.toAndroid());
+    await ExpoAlarmModule.set(alarmToUse.toAndroid());
   }
 }
 
@@ -54,16 +53,14 @@ async function removeAlarm(uid: string) {
   await ExpoAlarmModule.remove(uid);
 }
 
-async function updateAlarm(alarm: Alarm) {
-  if (!(alarm instanceof Alarm)) {
-    alarm = new Alarm(alarm);
+async function updateAlarm(alarm: AlarmSettings) {
+  let alarmToUse: Alarm = new Alarm(alarm);
+
+  if (alarmToUse.day instanceof Date) {
+    alarmToUse.day = alarmToUse.day.toJSON();
   }
 
-  if (alarm.day instanceof Date) {
-    alarm.day = alarm.day.toJSON();
-  }
-
-  await ExpoAlarmModule.update(alarm.toAndroid());
+  await ExpoAlarmModule.update(alarmToUse.toAndroid());
 }
 
 async function removeAllAlarms() {

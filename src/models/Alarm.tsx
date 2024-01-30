@@ -46,27 +46,6 @@ class Alarm {
     alarm.day = fromAndroidDays(alarm.day);
     return new Alarm(alarm);
   }
-
-  getTimeString() {
-    if (this.minutes && this.hour) {
-      const hour = this.hour < 10 ? '0' + this.hour : this.hour;
-      const minutes = this.minutes < 10 ? '0' + this.minutes : this.minutes;
-      return { hour, minutes };
-    } else {
-      return {};
-    }
-  }
-
-  getTime() {
-    const timeDate = new Date();
-    if (this.minutes && this.hour) {
-      timeDate.setMinutes(this.minutes);
-      timeDate.setHours(this.hour);
-    } else {
-      return {};
-    }
-    return timeDate;
-  }
 }
 
 export default Alarm;

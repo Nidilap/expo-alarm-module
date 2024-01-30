@@ -22,7 +22,7 @@ export default function App() {
       snoozeInterval: 5,
       repeating: true,
       active: true,
-    } as any);
+    });
   };
 
   const removeAlarmCheck = () => {
