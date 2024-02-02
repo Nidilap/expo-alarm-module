@@ -45,11 +45,25 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
     func set(alarm: NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
         let alarmToUse = Alarm(dictionary: alarm as! NSMutableDictionary);
 
-        manager.schedule(alarmToUse);
-    
+        manager.schedule(alarmToUse);    
 
         resolve("")
     }
+
+    @objc(enable:withResolver:withRejecter:)
+    func enable(uid: String, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+        manager.enable(uid)
+        
+        resolve("")
+    }
+
+    @objc(disable:withResolver:withRejecter:)
+    func disable(uid: String, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+        manager.disable(uid)
+        
+        resolve("")
+    }
+
 
     @objc(stop)
     func stop() -> Void {
@@ -61,6 +75,17 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
         manager.remove(uid)
         
         resolve("")
+    }
+
+    @objc(get:withResolver:withRejecter:)
+    func get(uid: String, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+        let alarm: Alarm! = manager.getAlarm(uid);
+        if(alarm != nil) {
+            let alarmSerialized: NSDictionary = alarm.toDictionary();
+            resolve(alarmSerialized)
+        } else {
+            resolve(nil)
+        }
     }
 
 

@@ -20,7 +20,7 @@ class Alarm: Codable {
         self.title = title
         self.description = description
     }
-    	
+    
     init(dictionary: NSMutableDictionary) {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
@@ -40,7 +40,7 @@ class Alarm: Codable {
             self.date = Date()
         }
     }
-    	
+    
     enum CodingKeys: CodingKey {
         case uid
         case date
@@ -70,6 +70,21 @@ class Alarm: Codable {
         try container.encode(self.snoozeEnabled, forKey: Alarm.CodingKeys.snoozeEnabled)
         try container.encode(self.title, forKey: Alarm.CodingKeys.title)
         try container.encode(self.description, forKey: Alarm.CodingKeys.description)
+    }
+    
+    func toDictionary() -> NSDictionary {
+        let alarm: Alarm = self;
+        
+        let alarmDictionary: NSDictionary = [
+            "uid": alarm.uid,
+            "date": alarm.date,
+            "active": alarm.active,
+            "snoozeEnabled": alarm.snoozeEnabled,
+            "title": alarm.title,
+            "description": alarm.description
+        ]
+        
+        return alarmDictionary;
     }
 }
 
