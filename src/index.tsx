@@ -75,10 +75,12 @@ async function getAllAlarms() {
 async function getAlarm(uid: string) {
   const alarm = await ExpoAlarmModule.get(uid);
 
-  if (Platform.OS == 'ios') {
-    return new Alarm(alarm);
-  } else if (Platform.OS == 'android') {
-    return Alarm.fromAndroid(alarm);
+  if (alarm?.uid) {
+    if (Platform.OS == 'ios') {
+      return new Alarm(alarm);
+    } else if (Platform.OS == 'android') {
+      return Alarm.fromAndroid(alarm);
+    }
   }
   return;
 }
