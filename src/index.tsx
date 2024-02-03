@@ -67,9 +67,21 @@ async function removeAllAlarms() {
   await ExpoAlarmModule.removeAll();
 }
 
-async function getAllAlarms() {
+async function getAllAlarms(): Promise<Alarm[]> {
   const alarms = await ExpoAlarmModule.getAll();
-  return alarms.map((a: any) => Alarm.fromAndroid(a));
+
+  if (alarms && alarms.length > 0) {
+    if (Platform.OS == 'ios') {
+      let alarmList: Alarm[] = [];
+      alarms.map((currentAlarm: Alarm) => {
+        alarmList.push(new Alarm(currentAlarm));
+      });
+      return alarmList;
+    } else if (Platform.OS == 'android') {
+      return alarms.map((a: any) => Alarm.fromAndroid(a));
+    }
+  }
+  return [];
 }
 
 async function getAlarm(uid: string) {

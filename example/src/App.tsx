@@ -1,7 +1,7 @@
 import * as React from 'react';
 
-import { StyleSheet, View, Button } from 'react-native';
-import { scheduleAlarm, stopAlarm, removeAlarm, enableAlarm, disableAlarm, getAlarm } from 'expo-alarm-module';
+import { StyleSheet, View, Button, Text } from 'react-native';
+import { scheduleAlarm, stopAlarm, removeAlarm, enableAlarm, disableAlarm, getAlarm, getAllAlarms, removeAllAlarms } from 'expo-alarm-module';
 import uuid from 'react-native-uuid';
 
 export default function App() {
@@ -50,6 +50,15 @@ export default function App() {
     }
   };
 
+  const getAllAlarmsCheck = async () => {
+    let resultado = await getAllAlarms();
+    console.log(resultado);
+  };
+
+  const removeAllAlarmsCheck = async () => {
+    removeAllAlarms();
+  };
+
   return (
     <View style={styles.container}>
       <Button title="Create Alarm" onPress={createAlarm} />
@@ -58,6 +67,9 @@ export default function App() {
       <Button title="Enables Alarm" onPress={enableAlarmCheck} />
       <Button title="Disables Alarm" onPress={disableAlarmCheck} />
       <Button title="Get Alarm" onPress={getAlarmCheck} />
+      <Text> -------------- </Text>
+      <Button title="Get All Alarms" onPress={getAllAlarmsCheck} />
+      <Button title="Remove All Alarms" onPress={removeAllAlarmsCheck} />
     </View>
   );
 }

@@ -43,7 +43,7 @@ class Alarms: Codable {
         
         let alarm = alarms[index]
         let uuidStr = alarm.uid
-        
+        alarms.remove(at: index)
         Store.shared.save(self, notifying: nil, userInfo: [
             Alarm.changeReasonKey: Alarm.removed,
             Alarm.oldValueKey: index,
@@ -60,11 +60,15 @@ class Alarms: Codable {
         ])
     }
     
+    func getAlarms() -> [Alarm] {
+        return alarms;
+    }
+    
     var count: Int {
         return alarms.count
     }
     
-    var uuids: Set<String> {
+    var uids: Set<String> {
         return Set(alarms.map { $0.uid })
     }
     

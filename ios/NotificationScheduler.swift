@@ -49,7 +49,7 @@ class NotificationScheduler : NotificationSchedulerDelegate
             print(requests)
             let alarms = Store.shared.alarms
             let uuidNotificationsSet = Set(requests.map({$0.content.userInfo["uid"] as! String}))
-            let uuidAlarmsSet = alarms.uuids
+            let uuidAlarmsSet = alarms.uids
             let uuidDeltaSet = uuidAlarmsSet.subtracting(uuidNotificationsSet)
             
             for uid in uuidDeltaSet {

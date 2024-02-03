@@ -7,7 +7,6 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
     public static var audioPlayer: AVAudioPlayer?
     
     private let notificationScheduler: NotificationSchedulerDelegate = NotificationScheduler()
-    private let alarms: Alarms = Store.shared.alarms
     private let manager: Manager = Manager();
     
     public override init() {
@@ -37,31 +36,31 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
     }
 
     @objc(multiply:withB:withResolver:withRejecter:)
-    func multiply(a: Float, b: Float, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+    func multiply(a: Float, b: Float, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
         resolve((a*b))
     }
 
     @objc(set:withResolver:withRejecter:)
-    func set(alarm: NSDictionary, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+    func set(alarm: NSDictionary, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
         let alarmToUse = Alarm(dictionary: alarm as! NSMutableDictionary);
 
         manager.schedule(alarmToUse);    
 
-        resolve("")
+        resolve(nil)
     }
 
     @objc(enable:withResolver:withRejecter:)
-    func enable(uid: String, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+    func enable(uid: String, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
         manager.enable(uid)
         
-        resolve("")
+        resolve(nil)
     }
 
     @objc(disable:withResolver:withRejecter:)
-    func disable(uid: String, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+    func disable(uid: String, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
         manager.disable(uid)
         
-        resolve("")
+        resolve(nil)
     }
 
 
@@ -70,15 +69,8 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
         manager.stop();
     }
 
-    @objc(remove:withResolver:withRejecter:)
-    func remove(uid: String, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
-        manager.remove(uid)
-        
-        resolve("")
-    }
-
     @objc(get:withResolver:withRejecter:)
-    func get(uid: String, resolve:RCTPromiseResolveBlock,reject:RCTPromiseRejectBlock) -> Void {
+    func get(uid: String, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
         let alarm: Alarm! = manager.getAlarm(uid);
         if(alarm != nil) {
             let alarmSerialized: NSDictionary = alarm.toDictionary();
@@ -87,7 +79,35 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
             resolve(nil)
         }
     }
+    
+    @objc(getAll:withRejecter:)
+    func getAll(resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
+        let alarmArray: [Alarm] = manager.getAllAlarms();
+    
+        let alarmDictionaryArray = alarmArray.map { alarm -> NSDictionary in
+            return alarm.toDictionary()
+        }
+        
+        if(alarmArray.count > 0) {
+            resolve(alarmDictionaryArray)
+        } else {
+            resolve(nil)
+        }    }
 
+    @objc(remove:withResolver:withRejecter:)
+    func remove(uid: String, resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
+        manager.remove(uid)
+        
+        resolve(nil)
+    }
+    
+    @objc(removeAll:withRejecter:)
+    func removeAll(resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
+        
+        manager.removeAll();
+        
+        resolve(nil)
+    }
 
     // The method will be called on the delegate only if the application is in the foreground. If the method is not implemented or the handler is not called in a timely manner then the notification will not be presented. The application can choose to have the notification presented as a sound, badge, alert and/or in the notification list. This decision should be based on whether the information in the notification is otherwise visible to the user.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {

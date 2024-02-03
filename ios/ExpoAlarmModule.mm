@@ -21,12 +21,18 @@ RCT_EXTERN_METHOD(disable:(NSString)alarmUid
 
 RCT_EXTERN_METHOD(stop)
 
+RCT_EXTERN_METHOD(get:(NSString)alarmUid
+                 withResolver:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+
+RCT_EXTERN_METHOD(getAll:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+
 RCT_EXTERN_METHOD(remove:(NSString)alarmUid
                  withResolver:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 
-RCT_EXTERN_METHOD(get:(NSString)alarmUid
-                 withResolver:(RCTPromiseResolveBlock)resolve
+RCT_EXTERN_METHOD(removeAll:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 
 

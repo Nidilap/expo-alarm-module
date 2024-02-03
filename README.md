@@ -77,10 +77,10 @@ const App = () => {
 
     /* Create a new alarm 60 seconds after the current date.*/
     const onStopAlarmButton = () => {
-        //@ts-ignore
-        stopAlarm("alarm1");
+        // Stops any alarm that is playing
+        stopAlarm();
         
-        //@ts-ignore
+        // Removes the alarm. Also stops any alarm that is playing, so the above function stopAlarm is redundant.
         removeAlarm("alarm1");
 
     };

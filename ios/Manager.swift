@@ -17,6 +17,11 @@ class Manager {
     func getAlarm(_ uid: String) -> Alarm? {
         return alarms.getAlarm(ByUUIDStr: uid);
     }
+    
+    func getAllAlarms() -> [Alarm] {
+        return alarms.getAlarms();
+    }
+    
 
     func enable(_ uid: String) {
         let alarm: Alarm! = self.getAlarm(uid) ?? nil;
@@ -31,7 +36,7 @@ class Manager {
             alarms.update(alarm)
         }
     }
-
+    
     func disable(_ uid: String) {
         // Stops any sound of alarm that is playing.
         self.stop()
@@ -63,5 +68,11 @@ class Manager {
         
         // Removes the alarm from the Store.
         alarms.remove(uid)
+    }
+    
+    func removeAll() {
+        for alarmUuid in alarms.uids {
+            self.remove(alarmUuid)
+        }
     }
 }
