@@ -35,6 +35,9 @@ RCT_EXTERN_METHOD(remove:(NSString)alarmUid
 RCT_EXTERN_METHOD(removeAll:(RCTPromiseResolveBlock)resolve
                  withRejecter:(RCTPromiseRejectBlock)reject)
 
+RCT_EXTERN_METHOD(getState:(RCTPromiseResolveBlock)resolve
+                 withRejecter:(RCTPromiseRejectBlock)reject)
+
 
 + (BOOL)requiresMainQueueSetup
 {

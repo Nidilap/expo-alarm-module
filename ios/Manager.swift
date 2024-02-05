@@ -4,13 +4,16 @@ import AVFoundation
 class Manager {
     private let scheduler: NotificationSchedulerDelegate = NotificationScheduler()
     private let alarms: Alarms = Store.shared.alarms
+    private var currentPlayingAlarm: String? = nil
     
     func schedule(_ alarm: Alarm) {
-        // Creates the notification (the alarm).
-        scheduler.setNotification(date: alarm.date, ringtoneName: "bell", snoozeEnabled: alarm.snoozeEnabled, onSnooze: false, uid: alarm.uid)
-
+        // Needs to save beforing set the notification, since the notification depends on the alarm.
+        
         // Stores the alarm in the Store for rescheduling or removing later.
-        alarms.add(alarm); 
+        alarms.add(alarm)
+        
+        // Creates the notification (the alarm).
+        scheduler.setNotification(alarm: alarm)
     }
     
     // Gets alarm from store
@@ -29,7 +32,7 @@ class Manager {
         // Only enables if the alarm already exists and is disabled.
         if((alarm != nil) && !alarm.active) {
             // Creates the notification (the alarm).
-            scheduler.setNotification(date: alarm.date, ringtoneName: "bell", snoozeEnabled: alarm.snoozeEnabled, onSnooze: false, uid: alarm.uid)
+            scheduler.setNotification(alarm: alarm)
             
             alarm.active = true
             
@@ -55,6 +58,7 @@ class Manager {
     }
 
     func stop() {
+        setCurrentPlayingAlarm(nil)
         ExpoAlarmModule.audioPlayer?.stop()
         AudioServicesRemoveSystemSoundCompletion(kSystemSoundID_Vibrate)
     }
@@ -68,6 +72,14 @@ class Manager {
         
         // Removes the alarm from the Store.
         alarms.remove(uid)
+    }
+    
+    func setCurrentPlayingAlarm(_ uid: String?) {
+        currentPlayingAlarm = uid;
+    }
+    
+    func getCurrentPlayingAlarm() -> String? {
+        return currentPlayingAlarm;
     }
     
     func removeAll() {

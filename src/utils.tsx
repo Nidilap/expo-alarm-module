@@ -28,4 +28,12 @@ function fromAndroidDays(daysArray: string | Date | number[] | undefined) {
   }
 }
 
-export { getParam, toAndroidDays, fromAndroidDays };
+function fromIOSDays(dayUTCSeconds: number): Date | undefined {
+  if (dayUTCSeconds) {
+    return new Date(new Date(0).setUTCSeconds(dayUTCSeconds));
+  } else {
+    return;
+  }
+}
+
+export { getParam, toAndroidDays, fromAndroidDays, fromIOSDays };

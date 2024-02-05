@@ -74,7 +74,7 @@ async function getAllAlarms(): Promise<Alarm[]> {
     if (Platform.OS == 'ios') {
       let alarmList: Alarm[] = [];
       alarms.map((currentAlarm: Alarm) => {
-        alarmList.push(new Alarm(currentAlarm));
+        alarmList.push(Alarm.fromIos(currentAlarm));
       });
       return alarmList;
     } else if (Platform.OS == 'android') {
@@ -89,7 +89,7 @@ async function getAlarm(uid: string) {
 
   if (alarm?.uid) {
     if (Platform.OS == 'ios') {
-      return new Alarm(alarm);
+      return Alarm.fromIos(alarm);
     } else if (Platform.OS == 'android') {
       return Alarm.fromAndroid(alarm);
     }

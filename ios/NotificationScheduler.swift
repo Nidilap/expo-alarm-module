@@ -4,6 +4,7 @@ import UserNotifications
 
 class NotificationScheduler : NotificationSchedulerDelegate
 {
+    private let alarms: Alarms = Store.shared.alarms
     // we need to request user for notifiction permission first
     func requestAuthorization() {
         UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound]) {
@@ -91,22 +92,22 @@ class NotificationScheduler : NotificationSchedulerDelegate
         return d
     }
     
-    func setNotification(date: Date, ringtoneName: String, snoozeEnabled: Bool, onSnooze: Bool, uid: String) {
-        let datesForNotification = getNotificationDates(baseDate: date)
+    func setNotification(alarm: Alarm) {
+        let datesForNotification = getNotificationDates(baseDate: alarm.date)
         
         for d in datesForNotification {
             let notificationContent = UNMutableNotificationContent()
-            notificationContent.title = "Alarm"
-            notificationContent.body = "Wake Up"
-            notificationContent.categoryIdentifier = snoozeEnabled ? Identifier.snoozeAlarmCategoryIndentifier
+            notificationContent.title = alarm.title
+            notificationContent.body = alarm.description
+            notificationContent.categoryIdentifier = alarm.snoozeEnabled ? Identifier.snoozeAlarmCategoryIndentifier
                                                                    : Identifier.alarmCategoryIndentifier
-            notificationContent.sound = UNNotificationSound(named: UNNotificationSoundName(ringtoneName + ".mp3"))
-            notificationContent.userInfo = ["snooze" : snoozeEnabled, "uid": uid, "soundName": ringtoneName]
+            notificationContent.sound = UNNotificationSound(named: UNNotificationSoundName("bell.mp3"))
+            notificationContent.userInfo = ["snooze" : alarm.snoozeEnabled, "uid": alarm.uid, "soundName": "bell"]
             
             // make dataComponents only contain [weekday, hour, minute] component to make it repeat weakly
             let dateComponents = Calendar.current.dateComponents([.weekday,.hour,.minute], from: d)
             let trigger = UNCalendarNotificationTrigger(dateMatching: dateComponents, repeats: false)
-            let request = UNNotificationRequest(identifier: uid,
+            let request = UNNotificationRequest(identifier: alarm.uid,
                                                 content: notificationContent,
                                                 trigger: trigger)
 
@@ -120,10 +121,15 @@ class NotificationScheduler : NotificationSchedulerDelegate
     }
     
     func setNotificationForSnooze(ringtoneName: String, snoozeMinute: Int, uid: String) {
-        let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
-        let now = Date()
-        let snoozeDate = (calendar as NSCalendar).date(byAdding: NSCalendar.Unit.minute, value: snoozeMinute, to: now, options:.matchStrictly)!
-        setNotification(date: snoozeDate, ringtoneName: ringtoneName, snoozeEnabled: true, onSnooze: true, uid: uid)
+        let currentAlarm = alarms.getAlarm(ByUUIDStr: uid);
+        if(currentAlarm != nil) {
+            let calendar = Calendar(identifier: Calendar.Identifier.gregorian)
+            let now = Date()
+            let snoozeDate = (calendar as NSCalendar).date(byAdding: NSCalendar.Unit.minute, value: snoozeMinute, to: now, options:.matchStrictly)!
+            setNotification(alarm: currentAlarm!)
+        } else {
+            print("Error when setting notification for snooze")
+        }
     }
     
     func cancelNotification(ByUUIDStr uid: String) {
@@ -132,7 +138,12 @@ class NotificationScheduler : NotificationSchedulerDelegate
     
     func updateNotification(ByUUIDStr uid: String, date: Date, ringtoneName: String, snoonzeEnabled: Bool) {
         cancelNotification(ByUUIDStr: uid)
-        setNotification(date: date, ringtoneName: ringtoneName, snoozeEnabled: snoonzeEnabled, onSnooze: false, uid: uid)
+        let currentAlarm = alarms.getAlarm(ByUUIDStr: uid);
+        if(currentAlarm != nil) {
+            setNotification(alarm: currentAlarm!)
+        } else {
+            print("Error updating notification")
+        }
     }
     
     enum weekdaysComparisonResult {

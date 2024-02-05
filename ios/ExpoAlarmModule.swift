@@ -103,11 +103,16 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
     
     @objc(removeAll:withRejecter:)
     func removeAll(resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
-        
         manager.removeAll();
         
         resolve(nil)
     }
+    
+    @objc(getState:withRejecter:)
+    func getState(resolve:RCTPromiseResolveBlock, reject:RCTPromiseRejectBlock) -> Void {
+        resolve(manager.getCurrentPlayingAlarm())
+    }
+
 
     // The method will be called on the delegate only if the application is in the foreground. If the method is not implemented or the handler is not called in a timely manner then the notification will not be presented. The application can choose to have the notification presented as a sound, badge, alert and/or in the notification list. This decision should be based on whether the information in the notification is otherwise visible to the user.
     func userNotificationCenter(_ center: UNUserNotificationCenter, willPresent notification: UNNotification, withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -121,6 +126,7 @@ class ExpoAlarmModule: NSObject, UNUserNotificationCenterDelegate, AVAudioPlayer
             let uidStr = userInfo["uid"] as? String
         else {return}
         
+        manager.setCurrentPlayingAlarm(uidStr)
         playSound(soundName)
         //schedule notification for snooze
         if snoozeEnabled {

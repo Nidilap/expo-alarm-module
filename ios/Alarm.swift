@@ -77,7 +77,7 @@ class Alarm: Codable {
         
         let alarmDictionary: NSDictionary = [
             "uid": alarm.uid,
-            "date": alarm.date,
+            "day": alarm.date.timeIntervalSince1970,
             "active": alarm.active,
             "snoozeEnabled": alarm.snoozeEnabled,
             "title": alarm.title,

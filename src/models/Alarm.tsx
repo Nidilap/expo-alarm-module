@@ -1,4 +1,4 @@
-import { toAndroidDays, fromAndroidDays, getParam } from '../utils';
+import { toAndroidDays, fromAndroidDays, getParam, fromIOSDays } from '../utils';
 
 class Alarm {
   uid?: string | undefined;
@@ -43,6 +43,13 @@ class Alarm {
 
   static fromAndroid(alarm: Alarm) {
     alarm.day = fromAndroidDays(alarm.day);
+    return new Alarm(alarm);
+  }
+
+  static fromIos(alarm: Alarm) {
+    if (typeof alarm.day === 'number') {
+      alarm.day = fromIOSDays(alarm.day);
+    }
     return new Alarm(alarm);
   }
 }
