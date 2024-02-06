@@ -59,6 +59,9 @@ Since this library has a config plugin for expo, you only need to install it wit
 
 ## Usage
 
+For a more detailed example of usage, clone this repository and run the example application, installing the dependencies of this native module using "yarn" in the root folder and running "yarn example android" or "yarn example ios" according to your OS.
+Don't forget to run "pod install" in the example/ios folder for configuring the ios files.
+
 ```js
 // App.js
 import React, { useEffect } from 'react';
