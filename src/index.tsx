@@ -1,6 +1,6 @@
 import { NativeModules, Platform } from 'react-native';
 import Alarm from './models/Alarm';
-import { AlarmSettings } from './types/Alarm.types';
+import { type AlarmSettings } from './types/Alarm.types';
 
 const LINKING_ERROR =
   `The package 'expo-alarm-module' doesn't seem to be linked. Make sure: \n\n` +

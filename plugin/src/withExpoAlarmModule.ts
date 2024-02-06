@@ -1,43 +1,28 @@
-import type { ExpoConfig } from '@expo/config-types';
-import { withPlugins, withStringsXml, AndroidConfig } from '@expo/config-plugins';
+import { type ConfigPlugin, withInfoPlist } from '@expo/config-plugins';
 
-type ConfigPluginProps = {};
+const withExpoAlarmModule: ConfigPlugin = (config) => {
+  withInfoPlist(config, (config) => {
+    const currentBackgroundModes = config.modResults.UIBackgroundModes ?? [];
 
-// function withExpoLocalizationIos(config: ExpoConfig) {
-//   if (config.extra?.supportsRTL == null) return config;
-//   if (!config.ios) config.ios = {};
-//   if (!config.ios.infoPlist) config.ios.infoPlist = {};
-//   config.ios.infoPlist.ExpoLocalization_supportsRTL = config.extra?.supportsRTL || false;
-//   return config;
-// }
+    // Audio background capability
+    if (!currentBackgroundModes.includes('audio')) {
+      config.modResults.UIBackgroundModes = [...currentBackgroundModes, 'audio'];
+    }
 
-function withExpoAlarmModuleAndroid(config: ExpoConfig) {
-  config = AndroidConfig.Permissions.withPermissions(config, [
-    'android.permission.SCHEDULE_EXACT_ALARM',
-    'android.permission.USE_EXACT_ALARM',
-    'android.permission.VIBRATE',
-    'android.permission.RECEIVE_BOOT_COMPLETED',
-    'android.permission.FOREGROUND_SERVICE',
-    'android.permission.WAKE_LOCK',
-  ]);
-
-  return withStringsXml(config, (config: any) => {
-    // config.modResults = AndroidConfig.Strings.setStringItem(
-    //   [
-    //     {
-    //       $: { name: 'ExpoLocalization_supportsRTL', translatable: 'false' },
-    //       _: String(data.supportsRTL ?? config.extra?.supportsRTL),
-    //     },
-    //   ],
-    //   config.modResults
-    // );
+    // Add background capability for "remote-notification"
+    if (!currentBackgroundModes.includes('remote-notification')) {
+      config.modResults.UIBackgroundModes = [...currentBackgroundModes, 'remote-notification'];
+    }
 
     return config;
   });
-}
 
-function withExpoAlarmModule(config: ExpoConfig, data: ConfigPluginProps = {}) {
-  return withPlugins(config, [[withExpoAlarmModuleAndroid, data]]);
-}
+  // withAndroidManifest(config, (config) => {
+  //   const activity = AndroidConfig.Manifest.getMainActivityOrThrow(config.modResults);
+  //   activity.$['android:supportsPictureInPicture'] = 'true';
+  //   return config;
+  // });
+  return config;
+};
 
 export default withExpoAlarmModule;

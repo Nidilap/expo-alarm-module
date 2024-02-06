@@ -47,6 +47,16 @@ In your `android/app/src/main/AndroidManifest.xml`
         <service android:name="com.expoalarmmodule.AlarmService" />
      .....
 ```
+
+## IOS manual Installation
+
+In your info.plist, you need to add background mode for sound and remote notifications capabilities.
+You also need to obtain permissions for notifications beforehand (the library asks permission when setting the notification for the first time, but if you get permission before it is better).
+
+## Expo Installation
+Since this library has a config plugin for expo, you only need to install it with expo install expo-alarm-module for it to work.
+
+
 ## Usage
 
 ```js
