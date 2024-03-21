@@ -84,3 +84,6 @@ example/node_modules/
 #Android Example
 
 example/android/
+
+#Plugin build
+plugin/build 

@@ -1,4 +1,3 @@
-import type { ExpoConfig } from '@expo/config-types';
-declare type ConfigPluginProps = {};
-declare function withExpoAlarmModule(config: ExpoConfig, data?: ConfigPluginProps): ExpoConfig;
-export default withExpoAlarmModule;
+import { ConfigPlugin } from '@expo/config-plugins';
+declare const _default: ConfigPlugin<void>;
+export default _default;

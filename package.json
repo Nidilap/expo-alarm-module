@@ -23,7 +23,8 @@
     "!**/__tests__",
     "!**/__fixtures__",
     "!**/__mocks__",
-    "!**/.*"
+    "!**/.*",
+    "plugin/*"
   ],
   "scripts": {
     "example": "yarn workspace expo-alarm-module-example",
@@ -56,17 +57,20 @@
     "@commitlint/config-conventional": "^17.0.2",
     "@evilmartians/lefthook": "^1.5.0",
     "@expo/config-plugins": "^7.2.5",
-    "@react-native/eslint-config": "^0.72.2",
+    "@react-native/eslint-config": "^0.75.0-main",
     "@release-it/conventional-changelog": "^5.0.0",
     "@types/jest": "^28.1.2",
+    "@types/node": "^20.11.30",
     "@types/react": "~17.0.21",
     "@types/react-native": "0.70.0",
     "commitlint": "^17.0.2",
     "del-cli": "^5.0.0",
-    "eslint": "^8.4.1",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-jest": "^27.9.0",
     "eslint-plugin-prettier": "^4.0.0",
-    "jest": "^28.1.1",
+    "expo-module-scripts": "^3.4.1",
+    "jest": "^29.7.0",
     "pod-install": "^0.1.0",
     "prettier": "^2.0.5",
     "react": "18.2.0",
@@ -143,7 +147,8 @@
           "printWidth": 200
         }
       ]
-    }
+    },
+    "plugins": ["jest"]
   },
   "eslintIgnore": [
     "node_modules/",

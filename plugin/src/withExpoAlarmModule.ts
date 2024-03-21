@@ -1,7 +1,9 @@
-import { type ConfigPlugin, withInfoPlist } from '@expo/config-plugins';
+import { AndroidConfig, type ConfigPlugin, createRunOncePlugin, withInfoPlist } from '@expo/config-plugins';
 
-const withExpoAlarmModule: ConfigPlugin = (config) => {
-  withInfoPlist(config, (config) => {
+const pkg = require('expo-alarm-module/package.json');
+
+const withIosPermissions: ConfigPlugin = (configProp) => {
+  return withInfoPlist(configProp, (config) => {
     const currentBackgroundModes = config.modResults.UIBackgroundModes ?? [];
 
     // Audio background capability
@@ -16,13 +18,23 @@ const withExpoAlarmModule: ConfigPlugin = (config) => {
 
     return config;
   });
+};
 
-  // withAndroidManifest(config, (config) => {
-  //   const activity = AndroidConfig.Manifest.getMainActivityOrThrow(config.modResults);
-  //   activity.$['android:supportsPictureInPicture'] = 'true';
-  //   return config;
-  // });
+const withAndroidPermissions: ConfigPlugin = (config) => {
+  return AndroidConfig.Permissions.withPermissions(config, [
+    'android.permission.SCHEDULE_EXACT_ALARM',
+    'android.permission.VIBRATE',
+    'android.permission.RECEIVE_BOOT_COMPLETED',
+    'android.permission.FOREGROUND_SERVICE',
+    'android.permission.WAKE_LOCK',
+  ]);
+};
+
+const withExpoAlarmModule: ConfigPlugin = (config) => {
+  config = withIosPermissions(config);
+  config = withAndroidPermissions(config);
+
   return config;
 };
 
-export default withExpoAlarmModule;
+export default createRunOncePlugin(withExpoAlarmModule, pkg.name, pkg.version);

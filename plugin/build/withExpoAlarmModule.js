@@ -1,37 +1,33 @@
 'use strict';
-var __spreadArray =
-  (this && this.__spreadArray) ||
-  function (to, from, pack) {
-    if (pack || arguments.length === 2)
-      for (var i = 0, l = from.length, ar; i < l; i++) {
-        if (ar || !(i in from)) {
-          if (!ar) ar = Array.prototype.slice.call(from, 0, i);
-          ar[i] = from[i];
-        }
-      }
-    return to.concat(ar || Array.prototype.slice.call(from));
-  };
 Object.defineProperty(exports, '__esModule', { value: true });
-var config_plugins_1 = require('@expo/config-plugins');
-var withExpoAlarmModule = function (config) {
-  (0, config_plugins_1.withInfoPlist)(config, function (config) {
-    var _a;
-    var currentBackgroundModes = (_a = config.modResults.UIBackgroundModes) !== null && _a !== void 0 ? _a : [];
+const config_plugins_1 = require('@expo/config-plugins');
+const pkg = require('expo-alarm-module/package.json');
+const withIosPermissions = (configProp) => {
+  return (0, config_plugins_1.withInfoPlist)(configProp, (config) => {
+    const currentBackgroundModes = config.modResults.UIBackgroundModes ?? [];
     // Audio background capability
     if (!currentBackgroundModes.includes('audio')) {
-      config.modResults.UIBackgroundModes = __spreadArray(__spreadArray([], currentBackgroundModes, true), ['audio'], false);
+      config.modResults.UIBackgroundModes = [...currentBackgroundModes, 'audio'];
     }
     // Add background capability for "remote-notification"
     if (!currentBackgroundModes.includes('remote-notification')) {
-      config.modResults.UIBackgroundModes = __spreadArray(__spreadArray([], currentBackgroundModes, true), ['remote-notification'], false);
+      config.modResults.UIBackgroundModes = [...currentBackgroundModes, 'remote-notification'];
     }
     return config;
   });
-  // withAndroidManifest(config, (config) => {
-  //   const activity = AndroidConfig.Manifest.getMainActivityOrThrow(config.modResults);
-  //   activity.$['android:supportsPictureInPicture'] = 'true';
-  //   return config;
-  // });
+};
+const withAndroidPermissions = (config) => {
+  return config_plugins_1.AndroidConfig.Permissions.withPermissions(config, [
+    'android.permission.SCHEDULE_EXACT_ALARM',
+    'android.permission.VIBRATE',
+    'android.permission.RECEIVE_BOOT_COMPLETED',
+    'android.permission.FOREGROUND_SERVICE',
+    'android.permission.WAKE_LOCK',
+  ]);
+};
+const withExpoAlarmModule = (config) => {
+  config = withIosPermissions(config);
+  config = withAndroidPermissions(config);
   return config;
 };
-exports.default = withExpoAlarmModule;
+exports.default = (0, config_plugins_1.createRunOncePlugin)(withExpoAlarmModule, pkg.name, pkg.version);
