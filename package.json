@@ -24,7 +24,9 @@
     "!**/__fixtures__",
     "!**/__mocks__",
     "!**/.*",
-    "plugin/*"
+    "plugin/*",
+    "app.plugin.js",
+    "!**/node_modules"
   ],
   "scripts": {
     "example": "yarn workspace expo-alarm-module-example",
@@ -148,7 +150,9 @@
         }
       ]
     },
-    "plugins": ["jest"]
+    "plugins": [
+      "jest"
+    ]
   },
   "eslintIgnore": [
     "node_modules/",

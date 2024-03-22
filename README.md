@@ -43,7 +43,7 @@ In your `android/app/src/main/AndroidManifest.xml`
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
-        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+        
         <service android:name="com.expoalarmmodule.AlarmService" />
      .....
 ```
@@ -54,7 +54,18 @@ In your info.plist, you need to add background mode for sound and remote notific
 You also need to obtain permissions for notifications beforehand (the library asks permission when setting the notification for the first time, but if you get permission before it is better).
 
 ## Expo Installation
-Since this library has a config plugin for expo, you only need to install it with expo install expo-alarm-module for it to work.
+Since this library has a config plugin for expo, you only need to install it with expo install expo-alarm-module for it to work and add the [config plugin](https://docs.expo.io/guides/config-plugins/) to the [`plugins`](https://docs.expo.io/versions/latest/config/app/#plugins) array of your `app.json` or `app.config.js`:
+
+```json
+{
+  "expo": {
+    "plugins": ["expo-alarm-module"]
+  }
+}
+```
+
+Next, rebuild your app as described in the ["Adding custom native code"](https://docs.expo.io/workflow/customizing/) guide.
+
 
 
 ## Usage
