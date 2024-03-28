@@ -28,6 +28,10 @@ In your `android/app/src/main/AndroidManifest.xml`
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission
+        android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
+        android:minSdkVersion="34" 
+    />
 
     <application ....>
         <receiver
@@ -44,7 +48,10 @@ In your `android/app/src/main/AndroidManifest.xml`
             </intent-filter>
         </receiver>
         
-        <service android:name="com.expoalarmmodule.AlarmService" />
+        <service 
+            android:name="com.expoalarmmodule.AlarmService" 
+            android:foregroundServiceType="mediaPlayback"
+        />
      .....
 ```
 
