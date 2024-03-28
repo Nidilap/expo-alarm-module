@@ -27,6 +27,7 @@ const withAndroidPermissions: ConfigPlugin = (config) => {
     'android.permission.RECEIVE_BOOT_COMPLETED',
     'android.permission.FOREGROUND_SERVICE',
     'android.permission.WAKE_LOCK',
+    'android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK',
   ]);
 };
 

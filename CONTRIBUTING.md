@@ -13,8 +13,28 @@ We want this community to be friendly and respectful to each other. Please follo
 
 ## Development workflow
 
+To run the example for testing, run the following commands:
+```sh
+yarn example start
+```
+
+To run the example app on Android:
+
+```sh
+yarn example android
+```
+
+To run the example app on iOS:
+
+```sh
+yarn example ios
+```
+
+After doing changes in the android folder, run .\gradlew clean and .\gradlew build in the example/android.
+
+
 For testing without publishing to npm, do the following:
 
 - Run npm pack in the package
-- Install the package in a managed Expo project '''npx expo install expo-alarm-module@../expo-alarm-module-1.1.10.tgz''' (Here will be the path to the package, in my case it was outside the project).
+- Install the package in a managed Expo project ```npx expo install expo-alarm-module@../expo-alarm-module-1.1.10.tgz``` (Here will be the path to the package, in my case it was outside the project).
 - Then add "expo-alarm-module" to the plugins array and build the native app locally with expo prebuild and yarn ios, yarn android.
