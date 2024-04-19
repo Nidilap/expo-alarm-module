@@ -32,6 +32,7 @@ In your `android/app/src/main/AndroidManifest.xml`
         android:name="android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
         android:minSdkVersion="34" 
     />
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
 
     <application ....>
         <receiver

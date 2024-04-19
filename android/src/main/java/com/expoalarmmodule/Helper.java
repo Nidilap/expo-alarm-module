@@ -198,7 +198,7 @@ class Helper {
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {  
             pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), notificationId, intent, PendingIntent.FLAG_MUTABLE);
         } else {
-            pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), notificationId, intent, 0);
+            pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), notificationId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         }
 
         return pendingIntent;
