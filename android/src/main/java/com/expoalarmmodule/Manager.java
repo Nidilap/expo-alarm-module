@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 
 import java.util.Date;
+import java.util.Objects;
 
 public class Manager {
 
@@ -121,42 +122,46 @@ public class Manager {
     static void stop(Context context) {
         Log.d(TAG, "Stopping " + activeAlarmUid);
 
-        if(sound != null) {
+        if(Objects.nonNull(sound)) {
             sound.stop();
         }
-        
-        Alarm alarm = Storage.getAlarm(context, activeAlarmUid);
-        AlarmDates dates = Storage.getDates(context, activeAlarmUid);
-        if(alarm != null) {
-          if (alarm.repeating) {
-              Date current = dates.getCurrentDate();
-              Date updated = AlarmDates.setNextWeek(current);
-              dates.update(current, updated);
-              Storage.saveDates(context, dates);
-              Helper.scheduleAlarm(context, dates.alarmUid, updated.getTime(), dates.getCurrentNotificationId());
-          } else {
-              alarm.active = false;
-              Storage.saveAlarm(context, alarm);
-              Storage.removeDates(context, activeAlarmUid);
-          }
+
+        if(activeAlarmUid != null) {
+            Alarm alarm = Storage.getAlarm(context, activeAlarmUid);
+            AlarmDates dates = Storage.getDates(context, activeAlarmUid);
+            if(alarm != null) {
+                if (alarm.repeating) {
+                    Date current = dates.getCurrentDate();
+                    Date updated = AlarmDates.setNextWeek(current);
+                    dates.update(current, updated);
+                    Storage.saveDates(context, dates);
+                    Helper.scheduleAlarm(context, dates.alarmUid, updated.getTime(), dates.getCurrentNotificationId());
+                } else {
+                    alarm.active = false;
+                    Storage.saveAlarm(context, alarm);
+                    Storage.removeDates(context, activeAlarmUid);
+                }
+            }
+            activeAlarmUid = null;
         }
-        activeAlarmUid = null;
     }
 
     static void snooze(Context context) {
         Log.d(TAG, "Snoozing " + activeAlarmUid);
 
-        if(sound != null) {
+        if(Objects.nonNull(sound)) {
             sound.stop();
         }
 
-        Alarm alarm = Storage.getAlarm(context, activeAlarmUid);
-        AlarmDates dates = Storage.getDates(context, activeAlarmUid);
-        Date updated = AlarmDates.snooze(new Date(), alarm.snoozeInterval);
-        dates.update(dates.getCurrentDate(), updated);
-        Storage.saveDates(context, dates);
-        Helper.scheduleAlarm(context, dates.alarmUid, updated.getTime(), dates.getCurrentNotificationId());
-        activeAlarmUid = null;
+        if(activeAlarmUid != null) {
+            Alarm alarm = Storage.getAlarm(context, activeAlarmUid);
+            AlarmDates dates = Storage.getDates(context, activeAlarmUid);
+            Date updated = AlarmDates.snooze(new Date(), alarm.snoozeInterval);
+            dates.update(dates.getCurrentDate(), updated);
+            Storage.saveDates(context, dates);
+            Helper.scheduleAlarm(context, dates.alarmUid, updated.getTime(), dates.getCurrentNotificationId());
+            activeAlarmUid = null;
+        }
     }
 
 }
