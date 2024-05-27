@@ -121,7 +121,10 @@ public class Manager {
     static void stop(Context context) {
         Log.d(TAG, "Stopping " + activeAlarmUid);
 
-        sound.stop();
+        if(sound != null) {
+            sound.stop();
+        }
+        
         Alarm alarm = Storage.getAlarm(context, activeAlarmUid);
         AlarmDates dates = Storage.getDates(context, activeAlarmUid);
         if(alarm != null) {
@@ -143,7 +146,10 @@ public class Manager {
     static void snooze(Context context) {
         Log.d(TAG, "Snoozing " + activeAlarmUid);
 
-        sound.stop();
+        if(sound != null) {
+            sound.stop();
+        }
+
         Alarm alarm = Storage.getAlarm(context, activeAlarmUid);
         AlarmDates dates = Storage.getDates(context, activeAlarmUid);
         Date updated = AlarmDates.snooze(new Date(), alarm.snoozeInterval);
