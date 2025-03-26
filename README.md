@@ -48,6 +48,15 @@ In your `android/app/src/main/AndroidManifest.xml`
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name="com.expoalarmmodule.receivers.NotificationActionReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="ACTION_STOP" />
+                <action android:name="ACTION_SNOOZE" />
+            </intent-filter>
+        </receiver>
         
         <service 
             android:name="com.expoalarmmodule.AlarmService" 

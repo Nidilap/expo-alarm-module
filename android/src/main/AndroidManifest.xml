@@ -26,6 +26,15 @@
                 <action android:name="android.intent.action.BOOT_COMPLETED" />
             </intent-filter>
         </receiver>
+        <receiver
+            android:name="com.expoalarmmodule.receivers.NotificationActionReceiver"
+            android:enabled="true"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="ACTION_STOP" />
+                <action android:name="ACTION_SNOOZE" />
+            </intent-filter>
+        </receiver>
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
         <service 
             android:name="com.expoalarmmodule.AlarmService"

@@ -119,7 +119,7 @@ public class Manager {
         Log.d(TAG, "Starting " + activeAlarmUid);
     }
 
-    static void stop(Context context) {
+    public static void stop(Context context) {
         Log.d(TAG, "Stopping " + activeAlarmUid);
 
         if(Objects.nonNull(sound)) {
@@ -146,7 +146,7 @@ public class Manager {
         }
     }
 
-    static void snooze(Context context) {
+    public static void snooze(Context context) {
         Log.d(TAG, "Snoozing " + activeAlarmUid);
 
         if(Objects.nonNull(sound)) {
