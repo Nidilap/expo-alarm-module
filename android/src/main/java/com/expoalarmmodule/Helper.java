@@ -19,7 +19,6 @@ import androidx.core.content.ContextCompat;
 
 import com.expoalarmmodule.receivers.AlarmReceiver;
 import com.expoalarmmodule.receivers.DismissReceiver;
-import com.expoalarmmodule.receivers.NotificationActionReceiver;
 
 import java.util.Calendar;
 
@@ -141,17 +140,9 @@ class Helper {
         String packageName = context.getPackageName();
         int smallIconResId = res.getIdentifier("ic_launcher", "mipmap", packageName);
         String channelId = context.getResources().getString(R.string.notification_channel_id);
-
-        Intent stopIntent = new Intent(context, NotificationActionReceiver.class);
-        stopIntent.setAction("ACTION_STOP");
-        stopIntent.putExtra("ALARM_UID", alarmUid);
-        PendingIntent pendingIntentStop = PendingIntent.getBroadcast(context, id, stopIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
-        Intent snoozeIntent = new Intent(context, NotificationActionReceiver.class);
-        snoozeIntent.setAction("ACTION_SNOOZE");
-        snoozeIntent.putExtra("ALARM_UID", alarmUid);
-        PendingIntent pendingIntentSnooze = PendingIntent.getBroadcast(context, id, snoozeIntent, PendingIntent.FLAG_UPDATE_CURRENT);
-
+    
+        PendingIntent pendingIntentDismiss = createOnDismissedIntent(context, alarmUid, id);
+    
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(smallIconResId)
                 .setContentTitle(title)
@@ -166,9 +157,8 @@ class Helper {
                 .setVibrate(null)
                 .setContentIntent(createOnClickedIntent(context, alarmUid, id))
                 .setDeleteIntent(createOnDismissedIntent(context, alarmUid, id))
-                .addAction(android.R.drawable.ic_menu_close_clear_cancel, "Stop", pendingIntentStop)
-                .addAction(android.R.drawable.ic_menu_recent_history, "Snooze", pendingIntentSnooze);
-
+                .addAction(0, "Dismiss", pendingIntentDismiss);
+    
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             int largeIconResId = res.getIdentifier("ic_launcher", "mipmap", packageName);
             Bitmap largeIconBitmap = BitmapFactory.decodeResource(res, largeIconResId);
@@ -207,14 +197,13 @@ class Helper {
         Intent intent = new Intent(context, DismissReceiver.class);
         intent.putExtra("NOTIFICATION_ID", notificationId);
         intent.putExtra("ALARM_UID", alarmUid);
-
-        PendingIntent pendingIntent = null;
+    
+        PendingIntent pendingIntent;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.S) {  
             pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), notificationId, intent, PendingIntent.FLAG_MUTABLE);
         } else {
             pendingIntent = PendingIntent.getBroadcast(context.getApplicationContext(), notificationId, intent, PendingIntent.FLAG_UPDATE_CURRENT);
         }
-
         return pendingIntent;
     }
 

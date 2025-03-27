@@ -49,12 +49,11 @@ In your `android/app/src/main/AndroidManifest.xml`
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.expoalarmmodule.receivers.NotificationActionReceiver"
+            android:name="com.expoalarmmodule.receivers.DismissReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
-                <action android:name="ACTION_STOP" />
-                <action android:name="ACTION_SNOOZE" />
+                <action android:name="DISMISS_ACTION" />
             </intent-filter>
         </receiver>
         
