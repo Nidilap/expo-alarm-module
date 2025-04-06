@@ -162,6 +162,7 @@ public class Helper {
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCategory(NotificationCompat.CATEGORY_ALARM)
                 .setAutoCancel(true)
+                .setOngoing(false)
                 .setSound(null)
                 .setVibrate(null)
                 .setContentIntent(createOnClickedIntent(context, alarmUid, id))

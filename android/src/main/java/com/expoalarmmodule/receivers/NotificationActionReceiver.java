@@ -1,5 +1,6 @@
 package com.expoalarmmodule.receivers;
 
+import android.app.NotificationManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -7,6 +8,7 @@ import android.util.Log;
 
 import com.expoalarmmodule.Manager;
 import com.expoalarmmodule.Helper;
+import com.expoalarmmodule.AlarmService;
 
 public class NotificationActionReceiver extends BroadcastReceiver {
 
@@ -33,22 +35,27 @@ public class NotificationActionReceiver extends BroadcastReceiver {
             case "DISMISS_ACTION":
                 Log.d(TAG, "Received DISMISS action for Alarm: " + alarmUid);
                 Manager.stop(context);
-                if (notificationId != -1) {
-                    Helper.cancelNotification(context, notificationId);
-                }
+                this.removeNotification(context, notificationId);
                 break;
 
             case "SNOOZE_ACTION":
                 Log.d(TAG, "Received SNOOZE action for Alarm: " + alarmUid);
                 Manager.snooze(context);
-                if (notificationId != -1) {
-                    Helper.cancelNotification(context, notificationId);
-                }
+                this.removeNotification(context, notificationId);
                 break;
 
             default:
                 Log.e(TAG, "Unknown action received: " + action);
                 break;
+        }
+    }
+
+    private void removeNotification(Context context, int notificationId) {
+        Intent serviceIntentSnooze = new Intent(context, AlarmService.class);
+        context.stopService(serviceIntentSnooze);
+        if (notificationId != -1) {
+            ((NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE))
+                .cancel(notificationId);
         }
     }
 }
