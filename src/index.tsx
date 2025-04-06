@@ -26,9 +26,9 @@ async function scheduleAlarm(alarm: AlarmSettings) {
     alarmToUse.day = alarmToUse.day.toJSON();
   }
 
-  if (Platform.OS == 'ios') {
+  if (Platform.OS === 'ios') {
     await ExpoAlarmModule.set(alarmToUse);
-  } else if (Platform.OS == 'android') {
+  } else if (Platform.OS === 'android') {
     await ExpoAlarmModule.set(alarmToUse.toAndroid());
   }
 }
@@ -71,13 +71,13 @@ async function getAllAlarms(): Promise<Alarm[]> {
   const alarms = await ExpoAlarmModule.getAll();
 
   if (alarms && alarms.length > 0) {
-    if (Platform.OS == 'ios') {
+    if (Platform.OS === 'ios') {
       let alarmList: Alarm[] = [];
       alarms.map((currentAlarm: Alarm) => {
         alarmList.push(Alarm.fromIos(currentAlarm));
       });
       return alarmList;
-    } else if (Platform.OS == 'android') {
+    } else if (Platform.OS === 'android') {
       return alarms.map((a: any) => Alarm.fromAndroid(a));
     }
   }
@@ -88,9 +88,9 @@ async function getAlarm(uid: string) {
   const alarm = await ExpoAlarmModule.get(uid);
 
   if (alarm?.uid) {
-    if (Platform.OS == 'ios') {
+    if (Platform.OS === 'ios') {
       return Alarm.fromIos(alarm);
-    } else if (Platform.OS == 'android') {
+    } else if (Platform.OS === 'android') {
       return Alarm.fromAndroid(alarm);
     }
   }

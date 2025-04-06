@@ -19,7 +19,10 @@ export default function App() {
       day: newDate,
       title: 'Title of alarm',
       description: 'Alarm Description',
-      snoozeInterval: 5,
+      showDismiss: true,
+      showSnooze: true,
+      snoozeText: 'Custom Snooze',
+      snoozeInterval: 1,
       repeating: true,
       active: true,
     });

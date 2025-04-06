@@ -131,14 +131,29 @@ public class ExpoAlarmModuleModule extends ReactContextBaseJavaModule {
     String title = alarm.getString("title");
     String description = alarm.getString("description");
 
-    int hour =  alarm.hasKey("hour") ?
+    int hour = alarm.hasKey("hour") ?
       alarm.getInt("hour") : -1;
 
     int minutes = alarm.hasKey("minutes") ? alarm.getInt("minutes") : -1;
 
-    int snoozeInterval = alarm.getInt("snoozeInterval");
     boolean repeating = alarm.getBoolean("repeating");
     boolean active = alarm.getBoolean("active");
+
+    boolean showDismiss = alarm.hasKey("showDismiss") ? alarm.getBoolean("showDismiss") : false;
+
+    /**
+     * Snooze configurations.
+     * If snooze is not set, it will be false by default.
+     * SnoozeInterval is 5 minutes by default.
+     */
+    boolean showSnooze = alarm.hasKey("showSnooze") ? alarm.getBoolean("showSnooze") : false;
+    int snoozeInterval = alarm.hasKey("snoozeInterval") ? alarm.getInt("snoozeInterval") : 5;
+
+    /**
+     * Custom texts
+     */
+    String dismissText = alarm.hasKey("dismissText") ? alarm.getString("dismissText") : "Dismiss";
+    String snoozeText = alarm.hasKey("snoozeText") ? alarm.getString("snoozeText") : "Snooze";
 
     ArrayList<Integer> days = new ArrayList<>();
 
@@ -161,7 +176,7 @@ public class ExpoAlarmModuleModule extends ReactContextBaseJavaModule {
         }
       }
     }
-    return new Alarm(uid, days, date, hour, minutes, snoozeInterval, title, description, repeating, active);
+    return new Alarm(uid, days, date, hour, minutes, showDismiss, showSnooze, snoozeInterval, title, description, repeating, active, dismissText, snoozeText);
   }
 
   private WritableMap serializeAlarmObject (Alarm alarm) throws Exception {
@@ -169,9 +184,19 @@ public class ExpoAlarmModuleModule extends ReactContextBaseJavaModule {
     map.putString("uid", alarm.uid);
     map.putString("title", alarm.title);
     map.putString("description", alarm.description);
-    map.putInt("snoozeInterval", alarm.snoozeInterval);
     map.putBoolean("repeating", alarm.repeating);
     map.putBoolean("active", alarm.active);
+    map.putBoolean("showDismiss", alarm.showDismiss);
+
+    // Snooze configs
+    map.putBoolean("showSnooze", alarm.showSnooze);
+    map.putInt("snoozeInterval", alarm.snoozeInterval);
+
+    // Custom texts
+    map.putString("dismissText", alarm.dismissText);
+    map.putString("snoozeText", alarm.snoozeText);
+
+
 
     if( alarm.date != null) {
       if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {

@@ -1,6 +1,7 @@
 # expo-alarm-module
+> This is not an official Expo SDK package.
 Alarm library to use with expo bare workflow.
-Tested in versions 0.64 to 0.72 of RN.
+Tested in versions 0.64 to 0.73 of RN.
 ## Installation
 
 ### NPM
@@ -49,11 +50,12 @@ In your `android/app/src/main/AndroidManifest.xml`
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.expoalarmmodule.receivers.DismissReceiver"
+            android:name="com.expoalarmmodule.receivers.NotificationActionReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="DISMISS_ACTION" />
+                <action android:name="SNOOZE_ACTION" />
             </intent-filter>
         </receiver>
         
@@ -106,7 +108,9 @@ const App = () => {
             uid: "alarm1",
             day: newDate,
             title: "Title of alarm",
-            description: "Alarm Description",        
+            description: "Alarm Description", 
+            showDismiss: true,       
+            showSnooze: true, 
             snoozeInterval: 5,
             repeating: true,
             active: true

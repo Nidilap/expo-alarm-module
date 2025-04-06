@@ -18,12 +18,12 @@ import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
 
 import com.expoalarmmodule.receivers.AlarmReceiver;
-import com.expoalarmmodule.receivers.DismissReceiver;
+import com.expoalarmmodule.receivers.NotificationActionReceiver;
 
 import java.util.Calendar;
 
 
-class Helper {
+public class Helper {
 
     private static final String TAG = "AlarmHelper";
 
@@ -100,13 +100,12 @@ class Helper {
     }
 
     static Notification getAlarmNotification(Context context, Alarm alarm, int notificationID) {
-        return getNotification(context, notificationID, alarm.uid, alarm.title, alarm.description);
+        return getNotification(context, notificationID, alarm.uid, alarm.title, alarm.description, alarm.showDismiss, alarm.showSnooze, alarm.dismissText, alarm.snoozeText);
     }
 
-    static void cancelNotification(Context context, int notificationId) {
+    public static void cancelNotification(Context context, int notificationId) {
         NotificationManager manager = (NotificationManager) context.getSystemService(Context.NOTIFICATION_SERVICE);
         manager.cancel(notificationId);
-        manager.cancelAll();
     }
 
     static void createNotificationChannel(Context context) {
@@ -135,13 +134,23 @@ class Helper {
         }
     }
 
-    protected static Notification getNotification(Context context, int id, String alarmUid, String title, String description) {
+    protected static Notification getNotification(
+        Context context,
+        int id,
+        String alarmUid,
+        String title,
+        String description,
+        boolean showDismiss,
+        boolean showSnooze,
+        String dismissText,
+        String snoozeText
+        ) {
         Resources res = context.getResources();
         String packageName = context.getPackageName();
         int smallIconResId = res.getIdentifier("ic_launcher", "mipmap", packageName);
         String channelId = context.getResources().getString(R.string.notification_channel_id);
     
-        PendingIntent pendingIntentDismiss = createOnDismissedIntent(context, alarmUid, id);
+        PendingIntent pendingIntentDismiss = createActionIntent(context, alarmUid, id, "DISMISS_ACTION");
     
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(smallIconResId)
@@ -152,12 +161,23 @@ class Helper {
                 .setPriority(NotificationCompat.PRIORITY_MAX)
                 .setVisibility(NotificationCompat.VISIBILITY_PUBLIC)
                 .setCategory(NotificationCompat.CATEGORY_ALARM)
-                .setAutoCancel(false)
+                .setAutoCancel(true)
                 .setSound(null)
                 .setVibrate(null)
                 .setContentIntent(createOnClickedIntent(context, alarmUid, id))
-                .setDeleteIntent(createOnDismissedIntent(context, alarmUid, id))
-                .addAction(0, "Dismiss", pendingIntentDismiss);
+                .setDeleteIntent(pendingIntentDismiss);
+
+        // If the dismiss button should be visible.
+        if(showDismiss) {
+            builder.addAction(android.R.drawable.ic_menu_close_clear_cancel, dismissText, pendingIntentDismiss);
+        }
+
+        // If snooze is active, add a button for snoozing.
+        if(showSnooze) {
+            PendingIntent pendingIntentSnoozee = createActionIntent(context, alarmUid, id, "SNOOZE_ACTION");
+            builder.addAction(android.R.drawable.ic_menu_recent_history, snoozeText, pendingIntentSnoozee);
+        }
+
     
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             int largeIconResId = res.getIdentifier("ic_launcher", "mipmap", packageName);
@@ -193,8 +213,12 @@ class Helper {
         return pendingIntent;
     }
 
-    private static PendingIntent createOnDismissedIntent(Context context, String alarmUid, int notificationId) {
-        Intent intent = new Intent(context, DismissReceiver.class);
+    /**
+     * Creates an intent for dismissing, snoozing or performing another action in the alarm notification.
+     */
+    private static PendingIntent createActionIntent(Context context, String alarmUid, int notificationId, String actionReceived) {
+        Intent intent = new Intent(context, NotificationActionReceiver.class);
+        intent.setAction(actionReceived);
         intent.putExtra("NOTIFICATION_ID", notificationId);
         intent.putExtra("ALARM_UID", alarmUid);
     

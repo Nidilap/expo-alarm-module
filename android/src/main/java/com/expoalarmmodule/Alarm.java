@@ -28,22 +28,47 @@ public class Alarm implements Cloneable {
     int hour;
     int minutes;
 
-    int snoozeInterval;
     String title;
     String description;
     boolean repeating;
     boolean active;
+    
+    /**
+     * Show dismiss button in notification. It is false by default.
+     */
+    boolean showDismiss;
 
-    Alarm(String uid, ArrayList<Integer> days, ZonedDateTime date, int hour, int minutes, int snoozeInterval, String title, String description, boolean repeating, boolean active) {
+    /**
+     * Show snooze button. It is false by default.
+     */
+    boolean showSnooze;
+
+    /**
+     * Snooze interval in minutes
+     * Default is 5 minutes
+     */
+    int snoozeInterval;
+
+    /**
+     * Custom texts for buttons of notifications
+     */
+    String dismissText;
+    String snoozeText;
+
+    Alarm(String uid, ArrayList<Integer> days, ZonedDateTime date, int hour, int minutes, boolean showDismiss, boolean showSnooze, int snoozeInterval, String title, String description, boolean repeating, boolean active, String dismissText, String snoozeText) {
         this.uid = uid;
         this.days = days;
         this.hour = hour;
         this.minutes = minutes;
+        this.showDismiss = showDismiss;
+        this.showSnooze = showSnooze;
         this.snoozeInterval = snoozeInterval;
         this.title = title;
         this.description = description;
         this.repeating = repeating;
         this.active = active;
+        this.dismissText = dismissText;
+        this.snoozeText = snoozeText;
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
           this.date = date;
         }
@@ -95,7 +120,11 @@ public class Alarm implements Cloneable {
         return (
                 this.hour == alarm.hour &&
                 this.minutes == alarm.minutes &&
+                this.showDismiss == alarm.showDismiss &&
+                this.showSnooze == alarm.showSnooze &&
                 this.snoozeInterval == alarm.snoozeInterval &&
+                this.dismissText == alarm.dismissText &&
+                this.snoozeText == alarm.snoozeText &&
                 this.uid.equals(alarm.uid) &&
                 this.days.equals(alarm.days) &&
                 this.title.equals(alarm.title) &&

@@ -6,7 +6,11 @@ class Alarm {
   description?: string | undefined;
   hour?: number | undefined;
   minutes?: number | undefined;
+  showDismiss?: boolean | undefined;
+  dismissText?: string | undefined;
+  showSnooze?: boolean | undefined;
   snoozeInterval?: number | undefined;
+  snoozeText?: string | undefined;
   repeating?: boolean | undefined;
   active?: boolean | undefined;
   day?: string | Date | number[] | undefined;
@@ -17,7 +21,11 @@ class Alarm {
     this.description = getParam(params, 'description');
     this.hour = getParam(params, 'hour');
     this.minutes = getParam(params, 'minutes');
+    this.showDismiss = getParam(params, 'showDismiss');
+    this.dismissText = getParam(params, 'dismissText');
+    this.showSnooze = getParam(params, 'showSnooze');
     this.snoozeInterval = getParam(params, 'snoozeInterval');
+    this.snoozeText = getParam(params, 'snoozeText');
     this.repeating = getParam(params, 'repeating');
     this.active = getParam(params, 'active');
     this.day = getParam(params, 'day');

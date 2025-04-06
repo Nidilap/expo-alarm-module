@@ -27,11 +27,12 @@
             </intent-filter>
         </receiver>
         <receiver
-            android:name="com.expoalarmmodule.receivers.DismissReceiver"
+            android:name="com.expoalarmmodule.receivers.NotificationActionReceiver"
             android:enabled="true"
             android:exported="true">
             <intent-filter>
                 <action android:name="DISMISS_ACTION" />
+                <action android:name="SNOOZE_ACTION" />
             </intent-filter>
         </receiver>
         <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
