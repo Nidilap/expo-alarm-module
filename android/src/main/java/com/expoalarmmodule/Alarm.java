@@ -55,7 +55,9 @@ public class Alarm implements Cloneable {
     String dismissText;
     String snoozeText;
 
-    Alarm(String uid, ArrayList<Integer> days, ZonedDateTime date, int hour, int minutes, boolean showDismiss, boolean showSnooze, int snoozeInterval, String title, String description, boolean repeating, boolean active, String dismissText, String snoozeText) {
+    String sound;
+
+    Alarm(String uid, ArrayList<Integer> days, ZonedDateTime date, int hour, int minutes, boolean showDismiss, boolean showSnooze, int snoozeInterval, String title, String description, boolean repeating, boolean active, String dismissText, String snoozeText, String sound) {
         this.uid = uid;
         this.days = days;
         this.hour = hour;
@@ -72,6 +74,7 @@ public class Alarm implements Cloneable {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
           this.date = date;
         }
+        this.sound = sound
     }
 
     List<Date> getDates() {

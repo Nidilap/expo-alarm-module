@@ -112,11 +112,14 @@ public class Manager {
     }
 
     static void start(Context context, String alarmUid) {
+        Alarm alarm = Storage.getAlarm(context, alarmUid); 
+        if (alarm == null) return;
+
         activeAlarmUid = alarmUid;
         sound = new Sound(context);
-        sound.play("default");
-
-        Log.d(TAG, "Starting " + activeAlarmUid);
+        sound.play(alarm.sound != null ? alarm.sound : "default");
+ 
+         Log.d(TAG, "Starting " + activeAlarmUid);
     }
 
     public static void stop(Context context) {

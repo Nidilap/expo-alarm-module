@@ -155,6 +155,8 @@ public class ExpoAlarmModuleModule extends ReactContextBaseJavaModule {
     String dismissText = alarm.hasKey("dismissText") ? alarm.getString("dismissText") : "Dismiss";
     String snoozeText = alarm.hasKey("snoozeText") ? alarm.getString("snoozeText") : "Snooze";
 
+    String sound = alarm.hasKey("sound") ? alarm.getString("sound") : null;
+
     ArrayList<Integer> days = new ArrayList<>();
 
     ZonedDateTime date = null;
@@ -176,7 +178,7 @@ public class ExpoAlarmModuleModule extends ReactContextBaseJavaModule {
         }
       }
     }
-    return new Alarm(uid, days, date, hour, minutes, showDismiss, showSnooze, snoozeInterval, title, description, repeating, active, dismissText, snoozeText);
+    return new Alarm(uid, days, date, hour, minutes, showDismiss, showSnooze, snoozeInterval, title, description, repeating, active, dismissText, snoozeText, sound);
   }
 
   private WritableMap serializeAlarmObject (Alarm alarm) throws Exception {
