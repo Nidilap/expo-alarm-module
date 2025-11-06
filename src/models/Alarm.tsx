@@ -14,6 +14,7 @@ class Alarm {
   repeating?: boolean | undefined;
   active?: boolean | undefined;
   day?: string | Date | number[] | undefined;
+  sound?: string | undefined;
 
   constructor(params: any = null) {
     this.uid = getParam(params, 'uid');
@@ -29,6 +30,7 @@ class Alarm {
     this.repeating = getParam(params, 'repeating');
     this.active = getParam(params, 'active');
     this.day = getParam(params, 'day');
+    this.sound = getParam(params, 'sound');
   }
 
   static getEmpty() {

@@ -13,6 +13,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Color;
 import android.os.Build;
 import android.util.Log;
+import android.media.RingtoneManager;
+import android.net.Uri;
 
 import androidx.core.app.NotificationCompat;
 import androidx.core.content.ContextCompat;
@@ -151,6 +153,15 @@ public class Helper {
         String channelId = context.getResources().getString(R.string.notification_channel_id);
     
         PendingIntent pendingIntentDismiss = createActionIntent(context, alarmUid, id, "DISMISS_ACTION");
+
+        Alarm alarm = Storage.getAlarm(context, alarmUid);
+        Uri alarmSound;
+        if (alarm.sound != null && !alarm.sound.isEmpty()) {
+            alarmSound = Uri.parse("android.resource://" + context.getPackageName() + "/raw/" + alarm.sound);
+        } else {
+            alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_ALARM);
+        }
+    
     
         NotificationCompat.Builder builder = new NotificationCompat.Builder(context, channelId)
                 .setSmallIcon(smallIconResId)
@@ -163,7 +174,7 @@ public class Helper {
                 .setCategory(NotificationCompat.CATEGORY_ALARM)
                 .setAutoCancel(true)
                 .setOngoing(false)
-                .setSound(null)
+                .setSound(alarmSound)
                 .setVibrate(null)
                 .setContentIntent(createOnClickedIntent(context, alarmUid, id))
                 .setDeleteIntent(pendingIntentDismiss);
